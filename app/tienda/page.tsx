@@ -2,134 +2,122 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { 
-  ShoppingBag,
+import {
   ArrowLeft,
-  Search,
-  ShoppingCart,
-  Star,
-  Heart,
+  ArrowRight,
+  ChevronDown,
+  CreditCard,
+  Facebook,
   Filter,
   Grid,
+  Heart,
+  Instagram,
   List,
-  ChevronDown,
-  Truck,
+  PackageCheck,
+  Search,
   Shield,
-  CreditCard,
-  PackageCheck
+  ShoppingBag,
+  ShoppingCart,
+  Star,
+  Truck,
 } from 'lucide-react'
 
-const categories = [
-  'Todos',
-  'Electrónica',
-  'Ropa',
-  'Hogar',
-  'Deportes',
-  'Belleza',
-  'Juguetes'
-]
+const categories = ['Todos', 'Tecnología', 'Moda', 'Hogar', 'Deportes', 'Belleza', 'Lifestyle']
 
 const products = [
   {
     id: 1,
-    name: 'Auriculares Bluetooth Premium',
-    category: 'Electrónica',
+    name: 'Auriculares Studio Max',
+    category: 'Tecnología',
     price: 45000,
     originalPrice: 65000,
     rating: 4.8,
     reviews: 124,
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop',
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&h=900&fit=crop',
     tag: 'Oferta',
-    inStock: true
   },
   {
     id: 2,
     name: 'Smartwatch Fitness Pro',
-    category: 'Electrónica',
+    category: 'Tecnología',
     price: 89000,
     rating: 4.6,
     reviews: 89,
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop',
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=900&h=900&fit=crop',
     tag: 'Nuevo',
-    inStock: true
   },
   {
     id: 3,
-    name: 'Camiseta Deportiva Premium',
-    category: 'Ropa',
+    name: 'Camiseta Performance',
+    category: 'Moda',
     price: 18000,
     originalPrice: 25000,
     rating: 4.7,
     reviews: 156,
-    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop',
-    inStock: true
+    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&h=900&fit=crop',
   },
   {
     id: 4,
-    name: 'Zapatillas Running Pro',
+    name: 'Zapatillas Running Carbon',
     category: 'Deportes',
     price: 52000,
     rating: 4.9,
     reviews: 203,
-    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop',
+    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&h=900&fit=crop',
     tag: 'Popular',
-    inStock: true
   },
   {
     id: 5,
-    name: 'Juego de Sábanas Queen',
+    name: 'Sabanas Hotel Collection',
     category: 'Hogar',
     price: 32000,
     rating: 4.5,
     reviews: 67,
-    image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=500&fit=crop',
-    inStock: true
+    image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&h=900&fit=crop',
   },
   {
     id: 6,
-    name: 'Set de Maquillaje Profesional',
+    name: 'Set de Maquillaje Atelier',
     category: 'Belleza',
     price: 38000,
     originalPrice: 48000,
     rating: 4.8,
     reviews: 145,
-    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&h=500&fit=crop',
+    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=900&h=900&fit=crop',
     tag: 'Oferta',
-    inStock: true
   },
   {
     id: 7,
-    name: 'Laptop 15" Core i7',
-    category: 'Electrónica',
+    name: 'Laptop Creator 15 Pro',
+    category: 'Tecnología',
     price: 450000,
     rating: 4.7,
     reviews: 88,
-    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&h=500&fit=crop',
+    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=900&h=900&fit=crop',
     tag: 'Nuevo',
-    inStock: true
   },
   {
     id: 8,
-    name: 'Cafetera Espresso Automática',
+    name: 'Cafetera Espresso Barista',
     category: 'Hogar',
     price: 125000,
     rating: 4.6,
     reviews: 92,
-    image: 'https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500&h=500&fit=crop',
-    inStock: true
+    image: 'https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=900&h=900&fit=crop',
   },
   {
     id: 9,
     name: 'Mochila Ejecutiva Cuero',
-    category: 'Ropa',
+    category: 'Lifestyle',
     price: 42000,
     rating: 4.9,
     reviews: 178,
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop',
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=900&h=900&fit=crop',
     tag: 'Popular',
-    inStock: true
-  }
+  },
 ]
+
+const formatCRC = (amount: number) => `₡${amount.toLocaleString('es-CR')}`
 
 export default function TiendaPage() {
   const [selectedCategory, setSelectedCategory] = useState('Todos')
@@ -138,115 +126,142 @@ export default function TiendaPage() {
   const [favorites, setFavorites] = useState<number[]>([])
   const [searchQuery, setSearchQuery] = useState('')
 
-  const filteredProducts = products.filter(product => {
+  const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === 'Todos' || product.category === selectedCategory
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesCategory && matchesSearch
   })
 
   const toggleFavorite = (id: number) => {
-    setFavorites(prev => 
-      prev.includes(id) ? prev.filter(fav => fav !== id) : [...prev, id]
-    )
-  }
-
-  const addToCart = () => {
-    setCartCount(prev => prev + 1)
+    setFavorites((current) => (current.includes(id) ? current.filter((favorite) => favorite !== id) : [...current, id]))
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
-                  <ShoppingBag className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-xl font-bold text-gray-900">TechShop</span>
+    <div className="min-h-screen bg-[#f6f4ef] text-[#111827]">
+      <header className="sticky top-0 z-50 border-b border-[#ded8cc] bg-[#fffaf1]/95 backdrop-blur-xl">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex min-h-20 items-center justify-between gap-4">
+            <div className="flex min-w-0 items-center gap-4">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#111827] text-white">
+                <ShoppingBag className="h-6 w-6" />
               </div>
-              
-              {/* Search Bar */}
-              <div className="hidden md:flex items-center bg-gray-100 rounded-lg px-4 py-2 w-96">
-                <Search className="w-5 h-5 text-gray-400 mr-2" />
-                <input
-                  type="text"
-                  placeholder="Buscar productos..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="bg-transparent outline-none w-full text-gray-700 placeholder-gray-400"
-                />
+              <div>
+                <h1 className="text-xl font-semibold tracking-tight">Mercado Nova</h1>
+                <p className="hidden text-xs font-bold uppercase tracking-[0.24em] text-[#2563eb] sm:block">Premium commerce</p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <button className="relative p-2 text-gray-700 hover:text-purple-600 transition-colors">
-                <Heart className="w-6 h-6" />
+            <div className="hidden min-w-[280px] max-w-xl flex-1 items-center border border-[#ded8cc] bg-white px-4 py-3 md:flex">
+              <Search className="mr-3 h-5 w-5 text-[#6b7280]" />
+              <input
+                type="text"
+                placeholder="Buscar productos, marcas o categorías"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-transparent text-sm text-[#111827] outline-none placeholder:text-[#9ca3af]"
+              />
+            </div>
+
+            <div className="flex items-center gap-1 sm:gap-2">
+              <button
+                type="button"
+                title="Favoritos"
+                className="relative hidden h-10 w-10 items-center justify-center text-[#374151] transition hover:bg-white hover:text-[#f97316] sm:flex"
+              >
+                <Heart className="h-5 w-5" />
                 {favorites.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center bg-[#f97316] px-1 text-xs font-bold text-white">
                     {favorites.length}
                   </span>
                 )}
               </button>
-              
-              <button className="relative p-2 text-gray-700 hover:text-purple-600 transition-colors">
-                <ShoppingCart className="w-6 h-6" />
+              <button
+                type="button"
+                title="Carrito"
+                className="relative hidden h-10 w-10 items-center justify-center text-[#374151] transition hover:bg-white hover:text-[#2563eb] sm:flex"
+              >
+                <ShoppingCart className="h-5 w-5" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center bg-[#2563eb] px-1 text-xs font-bold text-white">
                     {cartCount}
                   </span>
                 )}
               </button>
-
-              <Link
-                href="/"
-                className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
+              <Link href="/" className="inline-flex items-center gap-2 px-3 py-2 text-sm font-bold text-[#374151] transition hover:bg-white hover:text-[#111827]">
+                <ArrowLeft className="h-4 w-4" />
                 <span className="hidden sm:inline">Volver</span>
               </Link>
             </div>
           </div>
 
-          {/* Mobile Search */}
-          <div className="md:hidden pb-3">
-            <div className="flex items-center bg-gray-100 rounded-lg px-4 py-2">
-              <Search className="w-5 h-5 text-gray-400 mr-2" />
+          <div className="pb-4 md:hidden">
+            <div className="flex items-center border border-[#ded8cc] bg-white px-4 py-3">
+              <Search className="mr-3 h-5 w-5 text-[#6b7280]" />
               <input
                 type="text"
-                placeholder="Buscar productos..."
+                placeholder="Buscar productos"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent outline-none w-full text-gray-700 placeholder-gray-400"
+                className="w-full bg-transparent text-sm text-[#111827] outline-none placeholder:text-[#9ca3af]"
               />
             </div>
           </div>
         </div>
       </header>
 
-      {/* Promo Banner */}
-      <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-sm sm:text-base font-medium">
-            🎉 Envío GRATIS en compras mayores a ₡50,000 • Hasta 12 meses sin intereses
-          </p>
-        </div>
-      </div>
+      <section className="relative overflow-hidden bg-[#111827] text-white">
+        <img
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=2200&h=1200&fit=crop"
+          alt="Compra online con productos premium"
+          className="absolute inset-0 h-full w-full object-cover opacity-28"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#111827_0%,rgba(17,24,39,.9)_48%,rgba(17,24,39,.42)_100%)]" />
+        <div className="relative mx-auto grid max-w-7xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_420px] lg:px-8">
+          <div className="min-w-0 py-8 lg:py-16">
+            <div className="mb-6 inline-flex items-center gap-2 border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-[#bfdbfe] backdrop-blur">
+              Envío gratis desde ₡50,000 | 12 meses sin intereses
+            </div>
+            <h2 className="max-w-[22rem] break-words text-4xl font-semibold leading-[1.02] tracking-tight sm:max-w-3xl sm:text-6xl lg:text-7xl">
+              Una tienda que hace que comprar se sienta facil.
+            </h2>
+            <p className="mt-6 max-w-[22rem] text-lg leading-8 text-white/70 sm:max-w-2xl">
+              Catálogo claro, filtros útiles, productos bien presentados y señales de confianza visibles para que el
+              cliente avance hasta el carrito.
+            </p>
+            <a href="#catalogo" className="mt-8 inline-flex items-center gap-2 bg-white px-5 py-3 text-sm font-bold text-[#111827] transition hover:bg-[#dbeafe]">
+              Explorar catálogo
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Categories & Filters */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
-          <div className="flex items-center space-x-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0">
+          <div className="grid min-w-0 content-center gap-4 py-8 sm:grid-cols-2 lg:grid-cols-1">
+            {[
+              { label: 'Conversion demo', value: '+38%', detail: 'flujo de compra mas claro' },
+              { label: 'Productos activos', value: '9', detail: 'filtrables por categoría' },
+              { label: 'Beneficios visibles', value: '4', detail: 'confianza antes del checkout' },
+            ].map((item) => (
+              <div key={item.label} className="border border-white/10 bg-white/10 p-5 backdrop-blur">
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#93c5fd]">{item.label}</p>
+                <div className="mt-3 text-4xl font-semibold">{item.value}</div>
+                <p className="mt-1 text-sm text-white/60">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <main id="catalogo" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex gap-2 overflow-x-auto pb-2">
             {categories.map((category) => (
               <button
                 key={category}
+                type="button"
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all ${
+                className={`shrink-0 border px-4 py-3 text-sm font-bold transition ${
                   selectedCategory === category
-                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                    ? 'border-[#111827] bg-[#111827] text-white'
+                    : 'border-[#ded8cc] bg-white text-[#374151] hover:border-[#2563eb] hover:text-[#2563eb]'
                 }`}
               >
                 {category}
@@ -254,224 +269,146 @@ export default function TiendaPage() {
             ))}
           </div>
 
-          <div className="flex items-center space-x-2">
-            <button className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
-              <Filter className="w-4 h-4" />
-              <span>Filtros</span>
-              <ChevronDown className="w-4 h-4" />
+          <div className="flex items-center gap-2">
+            <button type="button" className="inline-flex items-center gap-2 border border-[#ded8cc] bg-white px-4 py-3 text-sm font-bold text-[#374151] transition hover:border-[#2563eb] hover:text-[#2563eb]">
+              <Filter className="h-4 w-4" />
+              Filtros
+              <ChevronDown className="h-4 w-4" />
             </button>
-
-            <div className="flex items-center bg-white rounded-lg p-1">
+            <div className="flex border border-[#ded8cc] bg-white p-1">
               <button
+                type="button"
+                title="Vista de cuadricula"
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded transition-colors ${
-                  viewMode === 'grid' ? 'bg-purple-100 text-purple-600' : 'text-gray-400'
-                }`}
+                className={`flex h-9 w-9 items-center justify-center transition ${viewMode === 'grid' ? 'bg-[#111827] text-white' : 'text-[#6b7280] hover:text-[#111827]'}`}
               >
-                <Grid className="w-4 h-4" />
+                <Grid className="h-4 w-4" />
               </button>
               <button
+                type="button"
+                title="Vista de lista"
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded transition-colors ${
-                  viewMode === 'list' ? 'bg-purple-100 text-purple-600' : 'text-gray-400'
-                }`}
+                className={`flex h-9 w-9 items-center justify-center transition ${viewMode === 'list' ? 'bg-[#111827] text-white' : 'text-[#6b7280] hover:text-[#111827]'}`}
               >
-                <List className="w-4 h-4" />
+                <List className="h-4 w-4" />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div className={`grid gap-6 mb-12 ${
-          viewMode === 'grid' 
-            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
-            : 'grid-cols-1'
-        }`}>
-          {filteredProducts.map((product) => (
-            <div
-              key={product.id}
-              className={`bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group ${
-                viewMode === 'list' ? 'flex' : ''
-              }`}
-            >
-              {/* Product Image */}
-              <div className={`relative overflow-hidden ${
-                viewMode === 'list' ? 'w-48' : 'h-64'
-              }`}>
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                {product.tag && (
-                  <span className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold shadow-lg ${
-                    product.tag === 'Oferta' ? 'bg-red-500 text-white' :
-                    product.tag === 'Nuevo' ? 'bg-blue-500 text-white' :
-                    'bg-yellow-500 text-white'
-                  }`}>
-                    {product.tag}
-                  </span>
-                )}
-                <button
-                  onClick={() => toggleFavorite(product.id)}
-                  className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-lg hover:scale-110 transition-transform"
-                >
-                  <Heart
-                    className={`w-5 h-5 ${
-                      favorites.includes(product.id)
-                        ? 'fill-pink-500 text-pink-500'
-                        : 'text-gray-400'
-                    }`}
-                  />
-                </button>
-              </div>
-
-              {/* Product Info */}
-              <div className="p-5 flex-1">
-                <span className="text-xs text-purple-600 font-semibold uppercase">
-                  {product.category}
-                </span>
-                <h3 className="text-lg font-bold text-gray-900 mt-1 mb-2">
-                  {product.name}
-                </h3>
-
-                {/* Rating */}
-                <div className="flex items-center space-x-2 mb-3">
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < Math.floor(product.rating)
-                            ? 'fill-yellow-400 text-yellow-400'
-                            : 'text-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-600">
-                    {product.rating} ({product.reviews})
-                  </span>
-                </div>
-
-                {/* Price */}
-                <div className="flex items-center space-x-2 mb-4">
-                  <span className="text-2xl font-bold text-gray-900">
-                    ₡{product.price.toLocaleString()}
-                  </span>
-                  {product.originalPrice && (
-                    <span className="text-sm text-gray-400 line-through">
-                      ₡{product.originalPrice.toLocaleString()}
+        <div className={`grid gap-5 ${viewMode === 'grid' ? 'md:grid-cols-2 xl:grid-cols-3' : 'grid-cols-1'}`}>
+          {filteredProducts.map((product) => {
+            const isFavorite = favorites.includes(product.id)
+            return (
+              <article key={product.id} className={`group overflow-hidden border border-[#ded8cc] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl ${viewMode === 'list' ? 'sm:flex' : ''}`}>
+                <div className={`relative overflow-hidden bg-[#f3f4f6] ${viewMode === 'list' ? 'sm:w-72 sm:shrink-0' : 'h-72'}`}>
+                  <img src={product.image} alt={product.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  {product.tag && (
+                    <span className={`absolute left-3 top-3 px-3 py-1 text-xs font-bold text-white ${
+                      product.tag === 'Oferta' ? 'bg-[#dc2626]' : product.tag === 'Nuevo' ? 'bg-[#2563eb]' : 'bg-[#f97316]'
+                    }`}>
+                      {product.tag}
                     </span>
                   )}
+                  <button
+                    type="button"
+                    title="Guardar favorito"
+                    onClick={() => toggleFavorite(product.id)}
+                    className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center bg-white text-[#374151] shadow-sm transition hover:text-[#f97316]"
+                  >
+                    <Heart className={`h-5 w-5 ${isFavorite ? 'fill-[#f97316] text-[#f97316]' : ''}`} />
+                  </button>
                 </div>
 
-                {/* Add to Cart Button */}
-                <button
-                  onClick={addToCart}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2"
-                >
-                  <ShoppingCart className="w-5 h-5" />
-                  <span>Agregar al Carrito</span>
-                </button>
-              </div>
-            </div>
-          ))}
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#2563eb]">{product.category}</p>
+                  <h3 className="mt-2 text-2xl font-semibold tracking-tight text-[#111827]">{product.name}</h3>
+                  <div className="mt-3 flex items-center gap-2">
+                    <div className="flex">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <Star key={index} className={`h-4 w-4 ${index < Math.floor(product.rating) ? 'fill-[#f5b400] text-[#f5b400]' : 'text-[#d1d5db]'}`} />
+                      ))}
+                    </div>
+                    <span className="text-sm text-[#6b7280]">
+                      {product.rating} ({product.reviews})
+                    </span>
+                  </div>
+                  <div className="mt-5 flex items-end gap-2">
+                    <span className="text-3xl font-semibold text-[#111827]">{formatCRC(product.price)}</span>
+                    {product.originalPrice && <span className="pb-1 text-sm text-[#9ca3af] line-through">{formatCRC(product.originalPrice)}</span>}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setCartCount((count) => count + 1)}
+                    className="mt-6 inline-flex items-center justify-center gap-2 bg-[#111827] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#2563eb]"
+                  >
+                    <ShoppingCart className="h-4 w-4" />
+                    Agregar al carrito
+                  </button>
+                </div>
+              </article>
+            )
+          })}
         </div>
 
-        {/* Benefits Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12 mb-8">
-          <div className="bg-white p-6 rounded-xl text-center">
-            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Truck className="w-6 h-6 text-purple-600" />
-            </div>
-            <h4 className="font-semibold text-gray-900 mb-1">Envío Gratis</h4>
-            <p className="text-sm text-gray-600">En compras mayores a ₡50,000</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl text-center">
-            <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Shield className="w-6 h-6 text-pink-600" />
-            </div>
-            <h4 className="font-semibold text-gray-900 mb-1">Compra Segura</h4>
-            <p className="text-sm text-gray-600">Protección al comprador</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl text-center">
-            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <CreditCard className="w-6 h-6 text-purple-600" />
-            </div>
-            <h4 className="font-semibold text-gray-900 mb-1">Pago Flexible</h4>
-            <p className="text-sm text-gray-600">Hasta 12 meses sin intereses</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl text-center">
-            <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <PackageCheck className="w-6 h-6 text-pink-600" />
-            </div>
-            <h4 className="font-semibold text-gray-900 mb-1">Garantía</h4>
-            <p className="text-sm text-gray-600">30 días de devolución</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
-                  <ShoppingBag className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-lg font-bold">TechShop</span>
+        <section className="mt-12 grid gap-5 md:grid-cols-4">
+          {[
+            { title: 'Envío gratis', text: 'En compras mayores a ₡50,000', icon: Truck, color: 'text-[#2563eb]' },
+            { title: 'Compra segura', text: 'Protección y pagos cifrados', icon: Shield, color: 'text-[#059669]' },
+            { title: 'Pago flexible', text: 'Hasta 12 meses sin intereses', icon: CreditCard, color: 'text-[#f97316]' },
+            { title: 'Devoluciones', text: '30 dias para cambios', icon: PackageCheck, color: 'text-[#7c3aed]' },
+          ].map((benefit) => {
+            const Icon = benefit.icon
+            return (
+              <div key={benefit.title} className="border border-[#ded8cc] bg-white p-5 text-center shadow-sm">
+                <Icon className={`mx-auto h-7 w-7 ${benefit.color}`} />
+                <h4 className="mt-4 font-semibold text-[#111827]">{benefit.title}</h4>
+                <p className="mt-2 text-sm leading-6 text-[#6b7280]">{benefit.text}</p>
               </div>
-              <p className="text-gray-200 text-sm">
-                Tu tienda de tecnología y más. Los mejores productos al mejor precio.
-              </p>
-            </div>
+            )
+          })}
+        </section>
+      </main>
 
-            <div>
-              <h4 className="font-semibold mb-4">Comprar</h4>
-              <ul className="space-y-2 text-sm text-gray-200">
-                <li>Ofertas</li>
-                <li>Nuevos Productos</li>
-                <li>Más Vendidos</li>
-                <li>Gift Cards</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Ayuda</h4>
-              <ul className="space-y-2 text-sm text-gray-200">
-                <li>Preguntas Frecuentes</li>
-                <li>Envíos</li>
-                <li>Devoluciones</li>
-                <li>Contacto</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Síguenos</h4>
-              <div className="flex space-x-3">
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors cursor-pointer">
-                  <span className="text-lg">f</span>
-                </div>
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors cursor-pointer">
-                  <span className="text-lg">📷</span>
-                </div>
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer">
-                  <span className="text-lg">🐦</span>
-                </div>
+      <footer className="bg-[#111827] text-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-4 lg:px-8">
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center bg-white text-[#111827]">
+                <ShoppingBag className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-lg font-semibold">Mercado Nova</div>
+                <div className="text-xs font-bold uppercase tracking-[0.22em] text-[#93c5fd]">Premium commerce</div>
               </div>
             </div>
+            <p className="mt-4 max-w-md text-sm leading-7 text-white/60">
+              Demo de comercio electrónico para marcas que necesitan catálogos modernos, filtros, carrito y confianza de
+              compra desde la primera pantalla.
+            </p>
           </div>
-
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-300">
-            <p>© 2026 TechShop • Demo por Keter Software</p>
+          <div>
+            <h4 className="font-semibold">Comprar</h4>
+            <ul className="mt-4 space-y-2 text-sm text-white/60">
+              <li>Ofertas</li>
+              <li>Nuevos productos</li>
+              <li>Más vendidos</li>
+              <li>Gift cards</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold">Síguenos</h4>
+            <div className="mt-4 flex gap-3">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center bg-white/10 text-white transition hover:bg-[#f97316]">
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center bg-white/10 text-white transition hover:bg-[#2563eb]">
+                <Facebook className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
+        <div className="border-t border-white/10 py-6 text-center text-sm text-white/50">© 2026 Mercado Nova | Demo por Keter Software</div>
       </footer>
     </div>
   )

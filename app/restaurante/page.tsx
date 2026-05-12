@@ -2,107 +2,100 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { 
-  Utensils,
+import {
   ArrowLeft,
+  ArrowRight,
+  Award,
+  Calendar,
+  ChefHat,
+  CheckCircle,
   Clock,
+  Facebook,
+  Instagram,
   MapPin,
   Phone,
-  Mail,
-  Calendar,
-  Users,
-  Wine,
-  ChefHat,
   Star,
-  Award,
-  Heart,
-  Instagram,
-  Facebook
+  Utensils,
+  Wine,
 } from 'lucide-react'
 
 const menuCategories = [
   {
     name: 'Entradas',
-    image: 'https://images.unsplash.com/photo-1559058922-6c5d82c9f3b2?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1559058922-6c5d82c9f3b2?w=1000&h=760&fit=crop',
     items: [
       {
         name: 'Carpaccio de Res',
-        description: 'Finas láminas de res con rúcula, parmesano y reducción balsámica',
+        description: 'Láminas finas, rúcula, parmesano y reducción balsámica.',
         price: '₡8,500',
-        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop'
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=900&h=650&fit=crop',
       },
       {
         name: 'Bruschetta Tricolor',
-        description: 'Pan tostado con tomate, albahaca y mozzarella fresca',
+        description: 'Pan rustico, tomate maduro, albahaca y mozzarella fresca.',
         price: '₡6,800',
-        image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=400&h=300&fit=crop'
+        image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=900&h=650&fit=crop',
       },
       {
         name: 'Ceviche de Corvina',
-        description: 'Pescado fresco marinado en limón con culantro coyote',
+        description: 'Pescado fresco, limón mandarina, chile dulce y culantro.',
         price: '₡9,200',
-        image: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=400&h=300&fit=crop'
-      }
-    ]
+        image: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=900&h=650&fit=crop',
+      },
+    ],
   },
   {
-    name: 'Platos Principales',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=600&fit=crop',
+    name: 'Principales',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=1000&h=760&fit=crop',
     items: [
       {
         name: 'Filete Mignon',
-        description: 'Filete de res premium con salsa de vino tinto, puré trufado y vegetales',
+        description: 'Res premium, salsa de vino tinto, pure trufado y vegetales.',
         price: '₡18,500',
-        image: 'https://images.unsplash.com/photo-1558030006-450675393462?w=400&h=300&fit=crop'
+        image: 'https://images.unsplash.com/photo-1558030006-450675393462?w=900&h=650&fit=crop',
       },
       {
         name: 'Salmón a la Parrilla',
-        description: 'Salmón atlántico con risotto de espárragos y mantequilla de limón',
+        description: 'Salmón atlántico, risotto de espárragos y mantequilla de limón.',
         price: '₡16,800',
-        image: 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400&h=300&fit=crop'
+        image: 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=900&h=650&fit=crop',
       },
       {
-        name: 'Pasta Carbonara',
-        description: 'Fettuccine casero con panceta, huevo, parmesano y pimienta negra',
+        name: 'Fettuccine Carbonara',
+        description: 'Pasta hecha en casa, panceta, huevo, parmesano y pimienta.',
         price: '₡12,500',
-        image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&h=300&fit=crop'
+        image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=900&h=650&fit=crop',
       },
-      {
-        name: 'Pechuga Wellington',
-        description: 'Pechuga de pollo envuelta en hojaldre con champiñones y foie gras',
-        price: '₡14,200',
-        image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop'
-      }
-    ]
+    ],
   },
   {
     name: 'Postres',
-    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1000&h=760&fit=crop',
     items: [
       {
         name: 'Tiramisú Clásico',
-        description: 'Bizcocho embebido en café con mascarpone y cacao',
+        description: 'Cafe intenso, mascarpone, cacao y bizcocho delicado.',
         price: '₡5,500',
-        image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop'
+        image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=900&h=650&fit=crop',
       },
       {
-        name: 'Lava Cake de Chocolate',
-        description: 'Bizcocho caliente con centro líquido de chocolate belga',
+        name: 'Lava Cake Belga',
+        description: 'Chocolate tibio, centro fluido y helado de vainilla.',
         price: '₡6,200',
-        image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=300&fit=crop'
+        image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=900&h=650&fit=crop',
       },
       {
-        name: 'Panna Cotta de Vainilla',
-        description: 'Crema italiana con coulis de frutos rojos',
+        name: 'Panna Cotta',
+        description: 'Vainilla natural, coulis de frutos rojos y crumble.',
         price: '₡5,800',
-        image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop'
-      }
-    ]
-  }
+        image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&h=650&fit=crop',
+      },
+    ],
+  },
 ]
 
 export default function RestaurantePage() {
-  const [selectedCategory, setSelectedCategory] = useState('Platos Principales')
+  const [selectedCategory, setSelectedCategory] = useState('Principales')
   const [reservationData, setReservationData] = useState({
     nombre: '',
     telefono: '',
@@ -110,9 +103,11 @@ export default function RestaurantePage() {
     fecha: '',
     hora: '',
     personas: '2',
-    comentarios: ''
+    comentarios: '',
   })
   const [submitted, setSubmitted] = useState(false)
+
+  const selectedMenu = menuCategories.find((category) => category.name === selectedCategory) || menuCategories[1]
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -121,415 +116,319 @@ export default function RestaurantePage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-900">
-      {/* Header */}
-      <header className="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-amber-900/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-amber-600 to-amber-800 rounded-full flex items-center justify-center">
-                <Utensils className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-serif font-bold text-amber-500">La Maison</h1>
-                <p className="text-xs text-amber-700 tracking-widest uppercase">Fine Dining</p>
-              </div>
+    <div className="min-h-screen bg-[#11100e] text-white">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#d6aa5b]/20 bg-[#11100e]/90 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center bg-[#8f2f2f] text-[#f8e4b0]">
+              <Utensils className="h-6 w-6" />
             </div>
-            <Link
-              href="/"
-              className="flex items-center space-x-2 px-4 py-2 text-amber-500 hover:text-amber-400 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span className="hidden sm:inline">Volver a Demos</span>
-            </Link>
+            <div>
+              <h1 className="font-serif text-2xl font-semibold tracking-tight text-[#f8e4b0]">La Maison Obsidiana</h1>
+              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#d6aa5b]">Fine dining</p>
+            </div>
           </div>
+          <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-[#d6aa5b] transition hover:text-white">
+            <ArrowLeft className="h-4 w-4" />
+            <span className="hidden sm:inline">Volver a demos</span>
+          </Link>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-800 to-amber-950">
-          <div className="absolute inset-0 opacity-10"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D97706' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          />
-        </div>
+      <section className="relative min-h-screen overflow-hidden pt-24">
+        <img
+          src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=2400&h=1500&fit=crop"
+          alt="Restaurante elegante con mesas preparadas"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,16,14,.96)_0%,rgba(17,16,14,.72)_48%,rgba(17,16,14,.28)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#11100e] to-transparent" />
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <div className="inline-flex items-center space-x-2 bg-amber-900/30 backdrop-blur-sm px-6 py-2 rounded-full mb-8 border border-amber-700/30">
-            <Award className="w-5 h-5 text-amber-500" />
-            <span className="text-amber-400 text-sm font-medium">Reconocido con Estrella Michelin 2025</span>
-          </div>
-          
-          <h2 className="text-6xl md:text-7xl font-serif font-bold text-white mb-6 tracking-tight">
-            Experiencia <span className="text-amber-500">Culinaria</span> Única
-          </h2>
-          
-          <p className="text-xl text-neutral-300 mb-12 leading-relaxed max-w-2xl mx-auto">
-            Donde la tradición francesa se encuentra con los sabores costarricenses. 
-            Una experiencia gastronómica que deleitará todos tus sentidos.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#reservar"
-              className="px-8 py-4 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-lg font-semibold hover:shadow-2xl hover:shadow-amber-900/50 transition-all duration-300 hover:scale-105"
-            >
-              Reservar Mesa
-            </a>
-            <a
-              href="#menu"
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-lg font-semibold border border-white/20 hover:bg-white/20 transition-all duration-300"
-            >
-              Ver Menú
-            </a>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-amber-500 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-2 bg-amber-500 rounded-full"></div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="py-20 bg-neutral-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center space-x-2 bg-amber-900/20 px-4 py-2 rounded-full mb-6">
-                <ChefHat className="w-5 h-5 text-amber-500" />
-                <span className="text-amber-400 text-sm font-medium">Nuestro Chef</span>
-              </div>
-              
-              <h3 className="text-4xl font-serif font-bold text-white mb-6">
-                Cocina de <span className="text-amber-500">Autor</span>
-              </h3>
-              
-              <p className="text-neutral-200 mb-6 leading-relaxed">
-                Bajo la dirección del Chef Jean-Pierre Morales, cada plato es una obra de arte 
-                que combina técnicas francesas clásicas con ingredientes locales de la más alta calidad.
-              </p>
-              
-              <p className="text-neutral-200 mb-8 leading-relaxed">
-                Con más de 20 años de experiencia en restaurantes de prestigio internacional, 
-                nuestro chef ha creado un menú que celebra los sabores auténticos y las presentaciones elegantes.
-              </p>
-
-              <div className="grid grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-amber-500 mb-1">20+</div>
-                  <div className="text-sm text-neutral-300">Años de Experiencia</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-amber-500 mb-1">★</div>
-                  <div className="text-sm text-neutral-300">Estrella Michelin</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-amber-500 mb-1">95%</div>
-                  <div className="text-sm text-neutral-300">Satisfacción</div>
-                </div>
-              </div>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pb-20 pt-20 sm:px-6 lg:grid-cols-[1fr_420px] lg:px-8">
+          <div className="min-w-0">
+            <div className="mb-6 inline-flex items-center gap-2 border border-[#d6aa5b]/30 bg-[#d6aa5b]/10 px-4 py-2 text-sm font-bold text-[#f8e4b0] backdrop-blur">
+              <Award className="h-4 w-4" />
+              Cocina de autor | Temporada 2026
             </div>
-
-            <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-amber-900 to-amber-950 rounded-2xl flex items-center justify-center text-9xl">
-                👨‍🍳
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-amber-600 to-amber-800 rounded-2xl flex items-center justify-center rotate-12">
-                <Award className="w-16 h-16 text-white" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Menu Section */}
-      <section id="menu" className="py-20 bg-neutral-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-amber-900/20 px-4 py-2 rounded-full mb-6">
-              <Wine className="w-5 h-5 text-amber-500" />
-              <span className="text-amber-400 text-sm font-medium">Nuestro Menú</span>
-            </div>
-            
-            <h3 className="text-4xl font-serif font-bold text-white mb-4">
-              Carta <span className="text-amber-500">Degustación</span>
-            </h3>
-            <p className="text-neutral-200 max-w-2xl mx-auto">
-              Platos elaborados con ingredientes de temporada y las mejores técnicas culinarias
+            <h2 className="max-w-[22rem] break-words font-serif text-4xl font-semibold leading-[1.02] tracking-tight sm:max-w-3xl sm:text-6xl lg:text-8xl">
+              Reservas para una noche que se recuerda.
+            </h2>
+            <p className="mt-6 max-w-[22rem] text-lg leading-8 text-[#e6d3ad] sm:max-w-2xl">
+              Un restaurante de alta cocina necesita apetito visual, elegancia sobria y una ruta de reserva directa. Esta
+              demo vende atmósfera antes de mostrar el menú.
             </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#reservar" className="inline-flex items-center gap-2 bg-[#d6aa5b] px-5 py-3 text-sm font-bold text-[#11100e] transition hover:bg-[#f8e4b0]">
+                Reservar mesa
+                <Calendar className="h-4 w-4" />
+              </a>
+              <a href="#menu" className="inline-flex items-center gap-2 border border-white/20 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10">
+                Ver menú
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
-          {/* Menu Categories */}
-          <div className="flex justify-center space-x-4 mb-12 overflow-x-auto pb-4">
-            {menuCategories.map((category) => (
-              <button
-                key={category.name}
-                onClick={() => setSelectedCategory(category.name)}
-                className={`px-6 py-3 rounded-lg font-medium whitespace-nowrap transition-all ${
-                  selectedCategory === category.name
-                    ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-lg shadow-amber-900/50'
-                    : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-750 hover:text-amber-500'
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Menu Items */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {menuCategories
-              .find((cat) => cat.name === selectedCategory)
-              ?.items.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-neutral-800/50 backdrop-blur-sm rounded-xl border border-neutral-700/50 hover:border-amber-900/50 transition-all duration-300 hover:shadow-xl hover:shadow-amber-900/10 overflow-hidden group"
-                >
-                  {/* Menu Item Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent"></div>
-                    <span className="absolute bottom-3 right-3 px-4 py-2 bg-amber-600 text-white font-bold text-lg rounded-lg shadow-lg">
-                      {item.price}
-                    </span>
-                  </div>
-                  
-                  {/* Menu Item Info */}
-                  <div className="p-6">
-                    <h4 className="text-xl font-serif font-semibold text-white mb-3">
-                      {item.name}
-                    </h4>
-                    <p className="text-neutral-300 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
+          <div className="w-full max-w-[22rem] min-w-0 border border-[#d6aa5b]/25 bg-[#11100e]/70 p-6 backdrop-blur sm:max-w-none">
+            <Wine className="h-8 w-8 text-[#d6aa5b]" />
+            <p className="mt-5 text-xs font-bold uppercase tracking-[0.26em] text-[#d6aa5b]">Menú degustación</p>
+            <h3 className="mt-3 font-serif text-3xl font-semibold text-white">7 tiempos, maridaje opcional.</h3>
+            <p className="mt-4 break-words text-sm leading-7 text-[#e6d3ad]">
+              Ingredientes costarricenses, técnica francesa y una selección de vinos pensada para cenas privadas,
+              aniversarios y experiencias corporativas.
+            </p>
+            <div className="mt-6 grid grid-cols-3 gap-3 text-center">
+              {[
+                ['4.9', 'rating'],
+                ['36', 'cubiertos'],
+                ['7', 'tiempos'],
+              ].map(([value, label]) => (
+                <div key={label} className="border border-[#d6aa5b]/20 bg-white/5 p-3">
+                  <div className="text-2xl font-semibold text-[#f8e4b0]">{value}</div>
+                  <div className="mt-1 text-xs uppercase tracking-[0.18em] text-[#d6aa5b]">{label}</div>
                 </div>
               ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-neutral-300 text-sm">
-              * Todos nuestros platillos pueden ser adaptados para dietas especiales. 
-              Consulte con nuestro personal.
-            </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Reservation Section */}
-      <section id="reservar" className="py-20 bg-neutral-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center space-x-2 bg-amber-900/20 px-4 py-2 rounded-full mb-6">
-              <Calendar className="w-5 h-5 text-amber-500" />
-              <span className="text-amber-400 text-sm font-medium">Reservaciones</span>
-            </div>
-            
-            <h3 className="text-4xl font-serif font-bold text-white mb-4">
-              Reserve su <span className="text-amber-500">Experiencia</span>
-            </h3>
-            <p className="text-neutral-200">
-              Complete el formulario y nuestro equipo confirmará su reservación
+      <section className="border-y border-white/10 bg-[#171411]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-8">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.28em] text-[#d6aa5b]">Chef y origen</p>
+            <h3 className="mt-3 font-serif text-5xl font-semibold tracking-tight">Cocina de precisión con alma local.</h3>
+            <p className="mt-6 text-base leading-8 text-[#d8c6a3]">
+              Bajo la dirección del chef Jean-Pierre Morales, el menú combina técnicas europeas, producto nacional y
+              una presentacion sobria que se siente exclusiva sin perder calidez.
             </p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              {[
+                { value: '20+', label: 'años de oficio' },
+                { value: '95%', label: 'satisfacción' },
+                { value: '48h', label: 'mise en place' },
+              ].map((item) => (
+                <div key={item.label} className="border border-white/10 bg-[#11100e] p-4">
+                  <div className="text-3xl font-semibold text-[#f8e4b0]">{item.value}</div>
+                  <p className="mt-1 text-sm text-[#d8c6a3]">{item.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="relative min-h-[420px] overflow-hidden border border-white/10">
+            <img
+              src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=1400&h=1000&fit=crop"
+              alt="Chef preparando un plato en cocina profesional"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#11100e]/70 to-transparent" />
+            <div className="absolute bottom-0 p-6">
+              <ChefHat className="h-8 w-8 text-[#d6aa5b]" />
+              <p className="mt-3 text-sm font-bold uppercase tracking-[0.22em] text-[#f8e4b0]">Chef Morales</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center">
+          <p className="text-sm font-bold uppercase tracking-[0.28em] text-[#d6aa5b]">Carta</p>
+          <h3 className="mt-3 font-serif text-5xl font-semibold tracking-tight">Platos que justifican la reserva.</h3>
+        </div>
+
+        <div className="mb-8 flex justify-center gap-3 overflow-x-auto pb-2">
+          {menuCategories.map((category) => (
+            <button
+              key={category.name}
+              type="button"
+              onClick={() => setSelectedCategory(category.name)}
+              className={`shrink-0 border px-5 py-3 text-sm font-bold transition ${
+                selectedCategory === category.name
+                  ? 'border-[#d6aa5b] bg-[#d6aa5b] text-[#11100e]'
+                  : 'border-white/10 bg-white/5 text-[#d8c6a3] hover:border-[#d6aa5b] hover:text-white'
+              }`}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-[380px_1fr]">
+          <div className="relative min-h-[430px] overflow-hidden border border-white/10">
+            <img src={selectedMenu.image} alt={selectedMenu.name} className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#11100e]/90 via-[#11100e]/20 to-transparent" />
+            <div className="absolute bottom-0 p-6">
+              <Wine className="h-8 w-8 text-[#d6aa5b]" />
+              <h4 className="mt-4 font-serif text-4xl font-semibold">{selectedMenu.name}</h4>
+              <p className="mt-3 text-sm leading-7 text-[#d8c6a3]">Seleccion curada para mostrar calidad, precio y composicion sin romper la experiencia visual.</p>
+            </div>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {selectedMenu.items.map((item) => (
+              <article key={item.name} className="group overflow-hidden border border-white/10 bg-[#171411] transition hover:-translate-y-1 hover:border-[#d6aa5b]/60">
+                <div className="relative h-52 overflow-hidden">
+                  <img src={item.image} alt={item.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  <span className="absolute bottom-3 right-3 bg-[#d6aa5b] px-3 py-2 text-sm font-bold text-[#11100e]">{item.price}</span>
+                </div>
+                <div className="p-5">
+                  <h5 className="font-serif text-2xl font-semibold text-white">{item.name}</h5>
+                  <p className="mt-3 text-sm leading-7 text-[#d8c6a3]">{item.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="reservar" className="bg-[#f5efe2] text-[#211814]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.28em] text-[#8f2f2f]">Reservaciones</p>
+            <h3 className="mt-3 font-serif text-5xl font-semibold tracking-tight">Una mesa excelente empieza con un formulario simple.</h3>
+            <p className="mt-5 text-base leading-8 text-[#6d5748]">
+              El formulario captura los datos justos para confirmar la reserva y permite que el equipo atienda alergias,
+              fechas especiales y preferencias de mesa.
+            </p>
+            <div className="mt-8 flex items-center gap-3 border border-[#dac6a2] bg-white p-4">
+              <Star className="h-6 w-6 fill-[#d6aa5b] text-[#d6aa5b]" />
+              <p className="text-sm font-semibold text-[#211814]">Ideal para cenas románticas, reuniones privadas y eventos ejecutivos.</p>
+            </div>
           </div>
 
           {submitted ? (
-            <div className="bg-green-900/20 border border-green-700/50 rounded-xl p-8 text-center">
-              <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h4 className="text-2xl font-semibold text-white mb-2">¡Reservación Recibida!</h4>
-              <p className="text-neutral-200">
-                Nos pondremos en contacto con usted pronto para confirmar los detalles.
-              </p>
+            <div className="border border-[#b7d7a8] bg-white p-10 text-center shadow-xl">
+              <CheckCircle className="mx-auto h-14 w-14 text-[#2f855a]" />
+              <h4 className="mt-4 font-serif text-3xl font-semibold">Reservación recibida</h4>
+              <p className="mt-2 text-[#6d5748]">El equipo confirmará los detalles por teléfono o correo.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="bg-neutral-800/50 backdrop-blur-sm rounded-xl p-8 border border-neutral-700/50">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label className="block text-neutral-300 mb-2 font-medium">Nombre Completo *</label>
-                  <input
-                    type="text"
-                    required
-                    value={reservationData.nombre}
-                    onChange={(e) => setReservationData({...reservationData, nombre: e.target.value})}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="Juan Pérez"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-neutral-300 mb-2 font-medium">Teléfono *</label>
-                  <input
-                    type="tel"
-                    required
-                    value={reservationData.telefono}
-                    onChange={(e) => setReservationData({...reservationData, telefono: e.target.value})}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="8888-8888"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-neutral-300 mb-2 font-medium">Email *</label>
-                  <input
-                    type="email"
-                    required
-                    value={reservationData.email}
-                    onChange={(e) => setReservationData({...reservationData, email: e.target.value})}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="correo@ejemplo.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-neutral-300 mb-2 font-medium">Número de Personas *</label>
-                  <select
-                    required
-                    value={reservationData.personas}
-                    onChange={(e) => setReservationData({...reservationData, personas: e.target.value})}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:border-amber-500 focus:outline-none transition-colors"
-                  >
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
-                      <option key={num} value={num}>{num} {num === 1 ? 'persona' : 'personas'}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-neutral-300 mb-2 font-medium">Fecha *</label>
-                  <input
-                    type="date"
-                    required
-                    value={reservationData.fecha}
-                    onChange={(e) => setReservationData({...reservationData, fecha: e.target.value})}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:border-amber-500 focus:outline-none transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-neutral-300 mb-2 font-medium">Hora *</label>
-                  <select
-                    required
-                    value={reservationData.hora}
-                    onChange={(e) => setReservationData({...reservationData, hora: e.target.value})}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:border-amber-500 focus:outline-none transition-colors"
-                  >
-                    <option value="">Seleccione una hora</option>
-                    <option value="18:00">6:00 PM</option>
-                    <option value="18:30">6:30 PM</option>
-                    <option value="19:00">7:00 PM</option>
-                    <option value="19:30">7:30 PM</option>
-                    <option value="20:00">8:00 PM</option>
-                    <option value="20:30">8:30 PM</option>
-                    <option value="21:00">9:00 PM</option>
-                    <option value="21:30">9:30 PM</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-neutral-300 mb-2 font-medium">Comentarios Especiales</label>
-                <textarea
-                  value={reservationData.comentarios}
-                  onChange={(e) => setReservationData({...reservationData, comentarios: e.target.value})}
-                  rows={4}
-                  className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:border-amber-500 focus:outline-none transition-colors resize-none"
-                  placeholder="Alergias, ocasión especial, preferencias de mesa, etc."
+            <form onSubmit={handleSubmit} className="grid gap-5 border border-[#dac6a2] bg-white p-6 shadow-xl md:grid-cols-2">
+              <label className="block">
+                <span className="mb-2 block text-sm font-bold">Nombre completo *</span>
+                <input
+                  type="text"
+                  required
+                  value={reservationData.nombre}
+                  onChange={(e) => setReservationData({ ...reservationData, nombre: e.target.value })}
+                  placeholder="Juan Perez"
+                  className="w-full border border-[#dac6a2] bg-[#fbf7ee] px-4 py-3 outline-none transition focus:border-[#8f2f2f] focus:bg-white"
                 />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-amber-600 to-amber-700 text-white py-4 rounded-lg font-semibold hover:shadow-2xl hover:shadow-amber-900/50 transition-all duration-300 hover:scale-105"
-              >
-                Confirmar Reservación
+              </label>
+              <label className="block">
+                <span className="mb-2 block text-sm font-bold">Telefono *</span>
+                <input
+                  type="tel"
+                  required
+                  value={reservationData.telefono}
+                  onChange={(e) => setReservationData({ ...reservationData, telefono: e.target.value })}
+                  placeholder="+506 8888-8888"
+                  className="w-full border border-[#dac6a2] bg-[#fbf7ee] px-4 py-3 outline-none transition focus:border-[#8f2f2f] focus:bg-white"
+                />
+              </label>
+              <label className="block">
+                <span className="mb-2 block text-sm font-bold">Email *</span>
+                <input
+                  type="email"
+                  required
+                  value={reservationData.email}
+                  onChange={(e) => setReservationData({ ...reservationData, email: e.target.value })}
+                  placeholder="correo@ejemplo.com"
+                  className="w-full border border-[#dac6a2] bg-[#fbf7ee] px-4 py-3 outline-none transition focus:border-[#8f2f2f] focus:bg-white"
+                />
+              </label>
+              <label className="block">
+                <span className="mb-2 block text-sm font-bold">Personas *</span>
+                <select
+                  required
+                  value={reservationData.personas}
+                  onChange={(e) => setReservationData({ ...reservationData, personas: e.target.value })}
+                  className="w-full border border-[#dac6a2] bg-[#fbf7ee] px-4 py-3 outline-none transition focus:border-[#8f2f2f] focus:bg-white"
+                >
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                    <option key={num} value={num}>
+                      {num} {num === 1 ? 'persona' : 'personas'}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="block">
+                <span className="mb-2 block text-sm font-bold">Fecha *</span>
+                <input
+                  type="date"
+                  required
+                  value={reservationData.fecha}
+                  onChange={(e) => setReservationData({ ...reservationData, fecha: e.target.value })}
+                  className="w-full border border-[#dac6a2] bg-[#fbf7ee] px-4 py-3 outline-none transition focus:border-[#8f2f2f] focus:bg-white"
+                />
+              </label>
+              <label className="block">
+                <span className="mb-2 block text-sm font-bold">Hora *</span>
+                <select
+                  required
+                  value={reservationData.hora}
+                  onChange={(e) => setReservationData({ ...reservationData, hora: e.target.value })}
+                  className="w-full border border-[#dac6a2] bg-[#fbf7ee] px-4 py-3 outline-none transition focus:border-[#8f2f2f] focus:bg-white"
+                >
+                  <option value="">Seleccione una hora</option>
+                  {['6:00 PM', '6:30 PM', '7:00 PM', '7:30 PM', '8:00 PM', '8:30 PM', '9:00 PM'].map((hour) => (
+                    <option key={hour} value={hour}>
+                      {hour}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="block md:col-span-2">
+                <span className="mb-2 block text-sm font-bold">Comentarios especiales</span>
+                <textarea
+                  rows={4}
+                  value={reservationData.comentarios}
+                  onChange={(e) => setReservationData({ ...reservationData, comentarios: e.target.value })}
+                  placeholder="Alergias, ocasión especial o preferencia de mesa."
+                  className="w-full resize-none border border-[#dac6a2] bg-[#fbf7ee] px-4 py-3 outline-none transition focus:border-[#8f2f2f] focus:bg-white"
+                />
+              </label>
+              <button type="submit" className="inline-flex items-center justify-center gap-2 bg-[#8f2f2f] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#211814] md:col-span-2">
+                Confirmar reservación
+                <ArrowRight className="h-4 w-4" />
               </button>
             </form>
           )}
         </div>
       </section>
 
-      {/* Contact & Hours */}
-      <section className="py-16 bg-neutral-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-amber-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-8 h-8 text-amber-500" />
+      <section className="border-y border-white/10 bg-[#171411]">
+        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-14 text-center sm:px-6 md:grid-cols-3 lg:px-8">
+          {[
+            { title: 'Dirección', body: 'Escazú Village, San José', icon: MapPin },
+            { title: 'Horario', body: 'Martes a domingo | 6:00 PM - 11:00 PM', icon: Clock },
+            { title: 'Contacto', body: '+506 2289-5000 | reservas@obsidiana.cr', icon: Phone },
+          ].map((item) => {
+            const Icon = item.icon
+            return (
+              <div key={item.title} className="border border-white/10 bg-[#11100e] p-6">
+                <Icon className="mx-auto h-7 w-7 text-[#d6aa5b]" />
+                <h4 className="mt-4 font-serif text-2xl font-semibold text-white">{item.title}</h4>
+                <p className="mt-2 text-sm leading-6 text-[#d8c6a3]">{item.body}</p>
               </div>
-              <h4 className="text-white font-semibold mb-2">Dirección</h4>
-              <p className="text-neutral-200 text-sm">
-                Escazú Village, San José<br />
-                Costa Rica
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-amber-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-8 h-8 text-amber-500" />
-              </div>
-              <h4 className="text-white font-semibold mb-2">Horario</h4>
-              <p className="text-neutral-200 text-sm">
-                Martes - Domingo<br />
-                6:00 PM - 11:00 PM
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-amber-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="w-8 h-8 text-amber-500" />
-              </div>
-              <h4 className="text-white font-semibold mb-2">Contacto</h4>
-              <p className="text-neutral-200 text-sm">
-                +506 2289-5000<br />
-                info@lamaison.cr
-              </p>
-            </div>
-          </div>
+            )
+          })}
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-black border-t border-neutral-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-600 to-amber-800 rounded-full flex items-center justify-center">
-                <Utensils className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <div className="text-lg font-serif font-bold text-amber-500">La Maison</div>
-                <div className="text-xs text-neutral-600">Fine Dining Experience</div>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-6">
-              <div className="flex space-x-4">
-                <div className="w-10 h-10 bg-neutral-900 rounded-full flex items-center justify-center hover:bg-amber-900/30 transition-colors cursor-pointer">
-                  <Instagram className="w-5 h-5 text-amber-500" />
-                </div>
-                <div className="w-10 h-10 bg-neutral-900 rounded-full flex items-center justify-center hover:bg-amber-900/30 transition-colors cursor-pointer">
-                  <Facebook className="w-5 h-5 text-amber-500" />
-                </div>
-              </div>
-            </div>
+      <footer className="bg-[#0b0a09]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+          <div>
+            <div className="font-serif text-xl font-semibold text-[#f8e4b0]">La Maison Obsidiana</div>
+            <p className="mt-1 text-sm text-[#8f816d]">Fine dining experience | Demo por Keter Software</p>
           </div>
-
-          <div className="border-t border-neutral-800 mt-8 pt-8 text-center text-sm text-neutral-400">
-            <p>© 2026 La Maison Restaurant • Demo por Keter Software</p>
+          <div className="flex gap-3">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center bg-white/10 text-[#d6aa5b] transition hover:bg-[#8f2f2f] hover:text-white">
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center bg-white/10 text-[#d6aa5b] transition hover:bg-[#8f2f2f] hover:text-white">
+              <Facebook className="h-5 w-5" />
+            </a>
           </div>
         </div>
       </footer>

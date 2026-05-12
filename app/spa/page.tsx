@@ -2,167 +2,161 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { 
-  Heart,
+import {
   ArrowLeft,
-  Sparkles,
-  Leaf,
-  Droplet,
-  Wind,
-  Sun,
-  Moon,
+  ArrowRight,
+  Calendar,
+  CheckCircle,
   Clock,
+  Droplet,
+  Heart,
+  Leaf,
+  Mail,
   MapPin,
   Phone,
-  Mail,
-  Calendar,
-  User,
-  CheckCircle,
+  Quote,
+  Sparkles,
   Star,
-  Quote
+  Sun,
+  User,
+  Wind,
 } from 'lucide-react'
 
 const services = [
   {
     name: 'Masajes',
     icon: Sparkles,
-    color: 'from-teal-400 to-cyan-500',
+    color: 'bg-[#4f7f66] text-white',
+    image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&h=900&fit=crop',
     items: [
       {
         name: 'Masaje Relajante',
         duration: '60 min',
         price: '₡35,000',
-        description: 'Técnicas suaves para liberar tensión y promover la relajación profunda',
-        image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=300&fit=crop'
+        description: 'Técnicas suaves para liberar tensión y bajar el ritmo del sistema nervioso.',
+        image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&h=650&fit=crop',
       },
       {
-        name: 'Masaje Terapéutico',
+        name: 'Masaje Terapeutico',
         duration: '90 min',
         price: '₡48,000',
-        description: 'Masaje de tejido profundo para dolores musculares crónicos',
-        image: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=400&h=300&fit=crop'
+        description: 'Trabajo profundo para dolores musculares, postura y recuperación.',
+        image: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=900&h=650&fit=crop',
       },
       {
-        name: 'Masaje con Piedras Calientes',
+        name: 'Piedras Calientes',
         duration: '75 min',
         price: '₡42,000',
-        description: 'Piedras volcánicas calientes para relajación muscular profunda',
-        image: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=400&h=300&fit=crop'
+        description: 'Calor mineral y presión controlada para relajación muscular profunda.',
+        image: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=900&h=650&fit=crop',
       },
-      {
-        name: 'Masaje Prenatal',
-        duration: '60 min',
-        price: '₡38,000',
-        description: 'Diseñado específicamente para futuras mamás',
-        image: 'https://images.unsplash.com/photo-1598901671243-00ca5f6c0fc8?w=400&h=300&fit=crop'
-      }
-    ]
+    ],
   },
   {
     name: 'Faciales',
     icon: Leaf,
-    color: 'from-emerald-400 to-green-500',
+    color: 'bg-[#7c8f58] text-white',
+    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&h=900&fit=crop',
     items: [
       {
         name: 'Facial Hidratante',
         duration: '60 min',
         price: '₡32,000',
-        description: 'Limpieza profunda con mascarilla hidratante y masaje facial',
-        image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=300&fit=crop'
+        description: 'Limpieza profunda, mascarilla nutritiva y masaje facial drenante.',
+        image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&h=650&fit=crop',
       },
       {
         name: 'Facial Anti-Edad',
         duration: '75 min',
         price: '₡45,000',
-        description: 'Tratamiento con péptidos y colágeno para rejuvenecer la piel',
-        image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&h=300&fit=crop'
+        description: 'Peptidos, colageno y tecnologia no invasiva para luminosidad.',
+        image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&h=650&fit=crop',
       },
       {
         name: 'Facial Purificante',
         duration: '60 min',
         price: '₡35,000',
-        description: 'Ideal para piel grasa y propensa al acné',
-        image: 'https://images.unsplash.com/photo-1559599238-5cc6e4e4e991?w=400&h=300&fit=crop'
-      }
-    ]
+        description: 'Ideal para piel grasa, brotes y poros visibles.',
+        image: 'https://images.unsplash.com/photo-1559599238-5cc6e4e4e991?w=900&h=650&fit=crop',
+      },
+    ],
   },
   {
-    name: 'Tratamientos Corporales',
+    name: 'Corporales',
     icon: Droplet,
-    color: 'from-blue-400 to-indigo-500',
+    color: 'bg-[#6f93a1] text-white',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&h=900&fit=crop',
     items: [
       {
         name: 'Exfoliación Corporal',
         duration: '45 min',
         price: '₡28,000',
-        description: 'Exfoliación completa con sales marinas y aceites esenciales',
-        image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&h=300&fit=crop'
+        description: 'Sales marinas, aceites botánicos y piel renovada al tacto.',
+        image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&h=650&fit=crop',
       },
       {
         name: 'Envoltura Detox',
         duration: '90 min',
         price: '₡52,000',
-        description: 'Envoltura de algas marinas para desintoxicar y tonificar',
-        image: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=400&h=300&fit=crop'
+        description: 'Algas, arcillas y descanso térmico para desintoxicar y tonificar.',
+        image: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=900&h=650&fit=crop',
       },
       {
         name: 'Ritual de Chocolate',
         duration: '120 min',
         price: '₡68,000',
-        description: 'Experiencia completa: exfoliación, envoltura y masaje',
-        image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=400&h=300&fit=crop'
-      }
-    ]
+        description: 'Exfoliación, envoltura aromática y masaje con notas de cacao.',
+        image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=900&h=650&fit=crop',
+      },
+    ],
   },
   {
-    name: 'Paquetes Especiales',
+    name: 'Paquetes',
     icon: Sun,
-    color: 'from-amber-400 to-orange-500',
+    color: 'bg-[#c58f6a] text-white',
+    image: 'https://images.unsplash.com/photo-1610117025935-b88fe4cdc8a5?w=1200&h=900&fit=crop',
     items: [
       {
         name: 'Día de Spa',
         duration: '4 horas',
         price: '₡95,000',
-        description: 'Masaje, facial, manicure y pedicure + almuerzo saludable',
-        image: 'https://images.unsplash.com/photo-1610117025935-b88fe4cdc8a5?w=400&h=300&fit=crop'
+        description: 'Masaje, facial, manicure, pedicure y almuerzo saludable.',
+        image: 'https://images.unsplash.com/photo-1610117025935-b88fe4cdc8a5?w=900&h=650&fit=crop',
       },
       {
-        name: 'Escapada Romántica', 
+        name: 'Escapada Romántica',
         duration: '3 horas',
         price: '₡160,000',
-        description: 'Para parejas: masaje, jacuzzi privado, champagne',
-        image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&h=300&fit=crop'
+        description: 'Experiencia para dos con masaje, jacuzzi privado y brindis.',
+        image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&h=650&fit=crop',
       },
       {
         name: 'Retiro de Bienestar',
         duration: '6 horas',
         price: '₡125,000',
-        description: 'Programa completo con yoga, meditación y tratamientos',
-        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=300&fit=crop'
-      }
-    ]
-  }
+        description: 'Yoga, meditacion, tratamientos y guia de autocuidado.',
+        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=900&h=650&fit=crop',
+      },
+    ],
+  },
 ]
 
 const testimonials = [
   {
     name: 'María González',
-    text: 'Una experiencia absolutamente mágica. El ambiente es tan relajante que te transporta a otro mundo. Los terapeutas son profesionales y muy atentos.',
-    rating: 5,
-    service: 'Masaje con Piedras Calientes'
+    text: 'El ambiente se siente privado, natural y muy cuidado. Salí con la piel luminosa y una calma que me duró toda la semana.',
+    service: 'Facial Hidratante',
   },
   {
-    name: 'Carlos Ramírez',
-    text: 'Mi esposa y yo disfrutamos del paquete para parejas. Fue el mejor regalo de aniversario. Totalmente recomendado.',
-    rating: 5,
-    service: 'Escapada Romántica'
+    name: 'Carlos Ramirez',
+    text: 'Reservé el paquete para parejas y fue una experiencia impecable. Todo estaba preparado, sin esperas y con muchísimo detalle.',
+    service: 'Escapada Romántica',
   },
   {
     name: 'Sofia Vargas',
-    text: 'Vengo cada mes para mi facial. Mi piel nunca ha lucido mejor. El personal es súper profesional y los productos son de primera calidad.',
-    rating: 5,
-    service: 'Facial Anti-Edad'
-  }
+    text: 'Vengo cada mes por el facial anti-edad. El equipo explica todo con claridad y los productos se sienten premium.',
+    service: 'Facial Anti-Edad',
+  },
 ]
 
 export default function SpaPage() {
@@ -174,9 +168,10 @@ export default function SpaPage() {
     fecha: '',
     hora: '',
     servicio: '',
-    comentarios: ''
+    comentarios: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const SelectedServiceIcon = selectedService.icon
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -185,444 +180,338 @@ export default function SpaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-emerald-50">
-      {/* Header */}
-      <header className="bg-white/70 backdrop-blur-lg shadow-sm sticky top-0 z-50 border-b border-teal-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center">
-                <Leaf className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-light text-teal-900">Serenity Spa</h1>
-                <p className="text-xs text-teal-600 tracking-wide">Wellness & Beauty</p>
-              </div>
+    <div className="min-h-screen bg-[#f7f1e8] text-[#28342d]">
+      <header className="sticky top-0 z-50 border-b border-[#ded3c3] bg-[#fbf7ef]/95 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center bg-[#4f7f66] text-white">
+              <Leaf className="h-6 w-6" />
             </div>
-            <Link
-              href="/"
-              className="flex items-center space-x-2 px-4 py-2 text-teal-700 hover:text-teal-900 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span className="hidden sm:inline">Volver a Demos</span>
-            </Link>
+            <div>
+              <h1 className="text-2xl font-light tracking-tight text-[#28342d]">Serena Ritual Spa</h1>
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#8b6b57]">Wellness & beauty</p>
+            </div>
           </div>
+          <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-[#4f7f66] transition hover:text-[#28342d]">
+            <ArrowLeft className="h-4 w-4" />
+            <span className="hidden sm:inline">Volver a demos</span>
+          </Link>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-teal-100/50 to-transparent"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-6 py-2 rounded-full mb-8 shadow-lg">
-              <Sparkles className="w-5 h-5 text-teal-600" />
-              <span className="text-teal-800 text-sm font-medium">Tu Oasis de Tranquilidad</span>
-            </div>
+      <section className="relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=2400&h=1400&fit=crop"
+          alt="Sala de spa con camillas, luz natural y ambiente sereno"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(247,241,232,.97)_0%,rgba(247,241,232,.82)_46%,rgba(247,241,232,.24)_100%)]" />
 
-            <h2 className="text-5xl md:text-6xl font-light text-teal-900 mb-6">
-              Encuentra tu <span className="font-semibold text-teal-600">Equilibrio</span>
+        <div className="relative mx-auto grid min-h-[calc(100vh-76px)] max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_420px] lg:px-8">
+          <div className="min-w-0">
+            <div className="mb-6 inline-flex items-center gap-2 border border-[#d8c8b3] bg-[#fbf7ef]/80 px-4 py-2 text-sm font-bold text-[#4f7f66] backdrop-blur">
+              <Sparkles className="h-4 w-4" />
+              Rituales de descanso, belleza y recuperación
+            </div>
+            <h2 className="max-w-[22rem] break-words text-4xl font-light leading-[1.05] tracking-tight text-[#28342d] sm:max-w-3xl sm:text-6xl lg:text-7xl">
+              Bienestar que se ve tan cuidado como se siente.
             </h2>
-
-            <p className="text-xl text-teal-700 mb-12 leading-relaxed">
-              Un espacio dedicado a tu bienestar físico, mental y emocional. 
-              Descubre la armonía perfecta entre cuerpo y mente.
+            <p className="mt-6 max-w-[22rem] text-lg leading-8 text-[#627064] sm:max-w-2xl">
+              Un sitio para spas necesita serenidad, confianza y deseo sensorial. Esta demo combina fotografía cálida,
+              servicios claros y reservas fáciles sin perder elegancia.
             </p>
-
-            <a
-              href="#reservar"
-              className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-600 text-white rounded-full font-medium hover:shadow-2xl hover:shadow-teal-500/30 transition-all duration-300 hover:scale-105"
-            >
-              <Calendar className="w-5 h-5" />
-              <span>Reservar Cita</span>
-            </a>
-          </div>
-
-          {/* Floating Elements */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Wind className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-teal-900 mb-2">Ambiente Zen</h3>
-              <p className="text-sm text-teal-700">
-                Espacios diseñados para la relajación total
-              </p>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Leaf className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-teal-900 mb-2">Productos Naturales</h3>
-              <p className="text-sm text-teal-700">
-                100% orgánicos y cruelty-free
-              </p>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-teal-900 mb-2">Personal Certificado</h3>
-              <p className="text-sm text-teal-700">
-                Terapeutas expertos y profesionales
-              </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#reservar" className="inline-flex items-center gap-2 bg-[#4f7f66] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#28342d]">
+                Reservar cita
+                <Calendar className="h-4 w-4" />
+              </a>
+              <a href="#servicios" className="inline-flex items-center gap-2 border border-[#d8c8b3] bg-[#fbf7ef] px-5 py-3 text-sm font-bold text-[#4f7f66] transition hover:border-[#4f7f66]">
+                Ver servicios
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Services Section */}
-      <section id="servicios" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h3 className="text-4xl font-light text-teal-900 mb-4">
-              Nuestros <span className="font-semibold text-teal-600">Servicios</span>
-            </h3>
-            <p className="text-teal-700 max-w-2xl mx-auto">
-              Experiencias personalizadas para restaurar tu energía y belleza natural
-            </p>
-          </div>
-
-          {/* Service Categories */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {services.map((service) => {
-              const Icon = service.icon
+          <div className="grid min-w-0 gap-4">
+            {[
+              { title: 'Ambiente sensorial', text: 'Aromas, luz natural y salas silenciosas.', icon: Wind },
+              { title: 'Productos botánicos', text: 'Líneas orgánicas, veganas y cruelty-free.', icon: Leaf },
+              { title: 'Terapeutas expertos', text: 'Protocolos personalizados para cada visita.', icon: Heart },
+            ].map((item) => {
+              const Icon = item.icon
               return (
-                <button
-                  key={service.name}
-                  onClick={() => setSelectedService(service)}
-                  className={`flex items-center space-x-3 px-6 py-3 rounded-full font-medium transition-all ${
-                    selectedService.name === service.name
-                      ? `bg-gradient-to-r ${service.color} text-white shadow-xl`
-                      : 'bg-white text-teal-700 hover:shadow-lg'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span>{service.name}</span>
-                </button>
+                <div key={item.title} className="border border-[#d8c8b3] bg-[#fbf7ef]/90 p-5 shadow-sm backdrop-blur">
+                  <Icon className="h-7 w-7 text-[#4f7f66]" />
+                  <h3 className="mt-4 text-xl font-semibold text-[#28342d]">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#627064]">{item.text}</p>
+                </div>
               )
             })}
           </div>
+        </div>
+      </section>
 
-          {/* Service Items */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {selectedService.items.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden group"
+      <section id="servicios" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-5 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.28em] text-[#8b6b57]">Menu de bienestar</p>
+            <h3 className="mt-3 text-5xl font-light tracking-tight text-[#28342d]">Servicios para bajar el volumen del mundo.</h3>
+          </div>
+          <p className="text-base leading-8 text-[#627064]">
+            La arquitectura de servicios permite navegar por categoría, comparar duración y precio, y pasar a reserva
+            con un solo clic.
+          </p>
+        </div>
+
+        <div className="mb-8 flex flex-wrap gap-3">
+          {services.map((service) => {
+            const Icon = service.icon
+            const active = selectedService.name === service.name
+            return (
+              <button
+                key={service.name}
+                type="button"
+                onClick={() => setSelectedService(service)}
+                className={`inline-flex items-center gap-2 border px-4 py-3 text-sm font-bold transition ${
+                  active ? service.color : 'border-[#d8c8b3] bg-[#fbf7ef] text-[#4f7f66] hover:border-[#4f7f66]'
+                }`}
               >
-                {/* Service Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  <div className={`absolute top-3 right-3 px-3 py-1 bg-gradient-to-r ${selectedService.color} rounded-full flex items-center space-x-1`}>
-                    <Clock className="w-4 h-4 text-white" />
-                    <span className="text-white text-sm font-medium">{item.duration}</span>
-                  </div>
-                </div>
+                <Icon className="h-4 w-4" />
+                {service.name}
+              </button>
+            )
+          })}
+        </div>
 
-                {/* Service Info */}
-                <div className="p-6">
-                  <h4 className="text-xl font-semibold text-teal-900 mb-3">{item.name}</h4>
-                  <p className="text-teal-700 text-sm mb-4 leading-relaxed">
-                    {item.description}
-                  </p>
-                  <div className="flex items-center justify-between pt-4 border-t border-teal-100">
-                    <span className="text-2xl font-bold text-teal-900">{item.price}</span>
-                    <button className="px-4 py-2 bg-gradient-to-r from-teal-500 to-cyan-600 text-white rounded-lg font-medium hover:shadow-lg transition-all">
-                      Reservar
-                    </button>
+        <div className="grid gap-6 lg:grid-cols-[390px_1fr]">
+          <div className="relative min-h-[430px] overflow-hidden border border-[#d8c8b3]">
+            <img src={selectedService.image} alt={selectedService.name} className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#28342d]/80 to-transparent" />
+            <div className="absolute bottom-0 p-6 text-white">
+              <SelectedServiceIcon className="h-8 w-8 text-[#f4d9bd]" />
+              <h4 className="mt-4 text-4xl font-light">{selectedService.name}</h4>
+              <p className="mt-3 text-sm leading-7 text-[#f7efe5]">Tratamientos presentados con imagen, beneficio, duración y precio para facilitar la decisión.</p>
+            </div>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {selectedService.items.map((item) => (
+              <article key={item.name} className="group overflow-hidden border border-[#d8c8b3] bg-[#fbf7ef] shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                <div className="relative h-52 overflow-hidden">
+                  <img src={item.image} alt={item.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  <div className="absolute right-3 top-3 inline-flex items-center gap-1 bg-[#28342d] px-3 py-1 text-xs font-bold text-white">
+                    <Clock className="h-3.5 w-3.5" />
+                    {item.duration}
                   </div>
                 </div>
-              </div>
+                <div className="p-5">
+                  <h5 className="text-xl font-semibold text-[#28342d]">{item.name}</h5>
+                  <p className="mt-3 min-h-[96px] text-sm leading-7 text-[#627064]">{item.description}</p>
+                  <div className="mt-5 flex items-center justify-between border-t border-[#d8c8b3] pt-4">
+                    <span className="text-xl font-semibold text-[#8b6b57]">{item.price}</span>
+                    <a href="#reservar" className="inline-flex items-center gap-1 text-sm font-bold text-[#4f7f66] hover:text-[#28342d]">
+                      Reservar <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-white/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h3 className="text-4xl font-light text-teal-900 mb-4">
-              Lo que dicen <span className="font-semibold text-teal-600">nuestros clientes</span>
-            </h3>
+      <section className="border-y border-[#d8c8b3] bg-[#fbf7ef]">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.28em] text-[#8b6b57]">Experiencias reales</p>
+            <h3 className="mt-3 text-5xl font-light tracking-tight text-[#28342d]">Calma que se puede recomendar.</h3>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg">
-                <Quote className="w-10 h-10 text-teal-300 mb-4" />
-                
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-teal-500 text-teal-500" />
+          <div className="grid gap-5 md:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <article key={testimonial.name} className="border border-[#d8c8b3] bg-white p-6 shadow-sm">
+                <Quote className="h-8 w-8 text-[#c58f6a]" />
+                <div className="mt-4 flex">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Star key={index} className="h-4 w-4 fill-[#c58f6a] text-[#c58f6a]" />
                   ))}
                 </div>
-
-                <p className="text-teal-800 mb-6 leading-relaxed italic">
-                  "{testimonial.text}"
-                </p>
-
-                <div className="border-t border-teal-100 pt-4">
-                  <p className="font-semibold text-teal-900">{testimonial.name}</p>
-                  <p className="text-sm text-teal-600">{testimonial.service}</p>
+                <p className="mt-5 text-sm leading-7 text-[#627064]">"{testimonial.text}"</p>
+                <div className="mt-6 border-t border-[#d8c8b3] pt-4">
+                  <p className="font-semibold text-[#28342d]">{testimonial.name}</p>
+                  <p className="text-sm text-[#8b6b57]">{testimonial.service}</p>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Booking Section */}
-      <section id="reservar" className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h3 className="text-4xl font-light text-teal-900 mb-4">
-              Reserva tu <span className="font-semibold text-teal-600">Momento</span>
-            </h3>
-            <p className="text-teal-700">
-              Completa el formulario y te confirmaremos tu cita
-            </p>
+      <section id="reservar" className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-[0.28em] text-[#8b6b57]">Reservas</p>
+          <h3 className="mt-3 text-5xl font-light tracking-tight text-[#28342d]">Su proximo ritual empieza aqui.</h3>
+          <p className="mt-5 text-base leading-8 text-[#627064]">
+            La reserva solicita el servicio, fecha y necesidades especiales para que el spa pueda preparar sala,
+            terapeuta y productos antes de la llegada.
+          </p>
+          <div className="mt-8 grid gap-3">
+            {[
+              'Confirmación por teléfono o correo',
+              'Opciones para parejas y regalos',
+              'Recomendaciones segun primera visita',
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-3 border border-[#d8c8b3] bg-[#fbf7ef] p-4">
+                <CheckCircle className="h-5 w-5 text-[#4f7f66]" />
+                <span className="text-sm font-semibold text-[#28342d]">{item}</span>
+              </div>
+            ))}
           </div>
+        </div>
 
-          {submitted ? (
-            <div className="bg-gradient-to-br from-teal-100 to-cyan-100 rounded-2xl p-12 text-center shadow-xl">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <CheckCircle className="w-12 h-12 text-teal-600" />
-              </div>
-              <h4 className="text-3xl font-semibold text-teal-900 mb-4">¡Reserva Confirmada!</h4>
-              <p className="text-teal-700 text-lg">
-                Gracias por confiar en nosotros. Te contactaremos pronto para confirmar los detalles de tu cita.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 shadow-2xl">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label className="block text-teal-800 mb-2 font-medium flex items-center space-x-2">
-                    <User className="w-4 h-4" />
-                    <span>Nombre Completo *</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={bookingData.nombre}
-                    onChange={(e) => setBookingData({...bookingData, nombre: e.target.value})}
-                    className="w-full px-4 py-3 bg-teal-50 border-2 border-teal-100 rounded-xl text-teal-900 focus:border-teal-500 focus:bg-white focus:outline-none transition-all"
-                    placeholder="Tu nombre"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-teal-800 mb-2 font-medium flex items-center space-x-2">
-                    <Phone className="w-4 h-4" />
-                    <span>Teléfono *</span>
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    value={bookingData.telefono}
-                    onChange={(e) => setBookingData({...bookingData, telefono: e.target.value})}
-                    className="w-full px-4 py-3 bg-teal-50 border-2 border-teal-100 rounded-xl text-teal-900 focus:border-teal-500 focus:bg-white focus:outline-none transition-all"
-                    placeholder="8888-8888"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-teal-800 mb-2 font-medium flex items-center space-x-2">
-                    <Mail className="w-4 h-4" />
-                    <span>Email *</span>
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={bookingData.email}
-                    onChange={(e) => setBookingData({...bookingData, email: e.target.value})}
-                    className="w-full px-4 py-3 bg-teal-50 border-2 border-teal-100 rounded-xl text-teal-900 focus:border-teal-500 focus:bg-white focus:outline-none transition-all"
-                    placeholder="correo@ejemplo.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-teal-800 mb-2 font-medium flex items-center space-x-2">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Servicio *</span>
-                  </label>
-                  <select
-                    required
-                    value={bookingData.servicio}
-                    onChange={(e) => setBookingData({...bookingData, servicio: e.target.value})}
-                    className="w-full px-4 py-3 bg-teal-50 border-2 border-teal-100 rounded-xl text-teal-900 focus:border-teal-500 focus:bg-white focus:outline-none transition-all"
-                  >
-                    <option value="">Selecciona un servicio</option>
-                    {services.map((category) =>
-                      category.items.map((item) => (
-                        <option key={item.name} value={item.name}>
-                          {item.name} - {item.price}
-                        </option>
-                      ))
-                    )}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-teal-800 mb-2 font-medium flex items-center space-x-2">
-                    <Calendar className="w-4 h-4" />
-                    <span>Fecha *</span>
-                  </label>
-                  <input
-                    type="date"
-                    required
-                    value={bookingData.fecha}
-                    onChange={(e) => setBookingData({...bookingData, fecha: e.target.value})}
-                    className="w-full px-4 py-3 bg-teal-50 border-2 border-teal-100 rounded-xl text-teal-900 focus:border-teal-500 focus:bg-white focus:outline-none transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-teal-800 mb-2 font-medium flex items-center space-x-2">
-                    <Clock className="w-4 h-4" />
-                    <span>Hora *</span>
-                  </label>
-                  <select
-                    required
-                    value={bookingData.hora}
-                    onChange={(e) => setBookingData({...bookingData, hora: e.target.value})}
-                    className="w-full px-4 py-3 bg-teal-50 border-2 border-teal-100 rounded-xl text-teal-900 focus:border-teal-500 focus:bg-white focus:outline-none transition-all"
-                  >
-                    <option value="">Selecciona una hora</option>
-                    <option value="09:00">9:00 AM</option>
-                    <option value="10:00">10:00 AM</option>
-                    <option value="11:00">11:00 AM</option>
-                    <option value="12:00">12:00 PM</option>
-                    <option value="14:00">2:00 PM</option>
-                    <option value="15:00">3:00 PM</option>
-                    <option value="16:00">4:00 PM</option>
-                    <option value="17:00">5:00 PM</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-teal-800 mb-2 font-medium">Comentarios o Peticiones Especiales</label>
-                <textarea
-                  value={bookingData.comentarios}
-                  onChange={(e) => setBookingData({...bookingData, comentarios: e.target.value})}
-                  rows={4}
-                  className="w-full px-4 py-3 bg-teal-50 border-2 border-teal-100 rounded-xl text-teal-900 focus:border-teal-500 focus:bg-white focus:outline-none transition-all resize-none"
-                  placeholder="¿Alguna preferencia especial? ¿Primera vez en un spa?"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-teal-500/30 transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
+        {submitted ? (
+          <div className="border border-[#b9d2bf] bg-[#fbf7ef] p-10 text-center shadow-xl">
+            <CheckCircle className="mx-auto h-14 w-14 text-[#4f7f66]" />
+            <h4 className="mt-4 text-3xl font-light text-[#28342d]">Reserva recibida</h4>
+            <p className="mt-2 text-[#627064]">El equipo confirmará disponibilidad y recomendaciones para su cita.</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="grid gap-5 border border-[#d8c8b3] bg-[#fbf7ef] p-6 shadow-xl md:grid-cols-2">
+            <label className="block">
+              <span className="mb-2 flex items-center gap-2 text-sm font-bold text-[#28342d]">
+                <User className="h-4 w-4 text-[#4f7f66]" />
+                Nombre completo *
+              </span>
+              <input
+                type="text"
+                required
+                value={bookingData.nombre}
+                onChange={(e) => setBookingData({ ...bookingData, nombre: e.target.value })}
+                placeholder="Tu nombre"
+                className="w-full border border-[#d8c8b3] bg-white px-4 py-3 outline-none transition focus:border-[#4f7f66]"
+              />
+            </label>
+            <label className="block">
+              <span className="mb-2 flex items-center gap-2 text-sm font-bold text-[#28342d]">
+                <Phone className="h-4 w-4 text-[#4f7f66]" />
+                Telefono *
+              </span>
+              <input
+                type="tel"
+                required
+                value={bookingData.telefono}
+                onChange={(e) => setBookingData({ ...bookingData, telefono: e.target.value })}
+                placeholder="+506 8888-8888"
+                className="w-full border border-[#d8c8b3] bg-white px-4 py-3 outline-none transition focus:border-[#4f7f66]"
+              />
+            </label>
+            <label className="block">
+              <span className="mb-2 flex items-center gap-2 text-sm font-bold text-[#28342d]">
+                <Mail className="h-4 w-4 text-[#4f7f66]" />
+                Email *
+              </span>
+              <input
+                type="email"
+                required
+                value={bookingData.email}
+                onChange={(e) => setBookingData({ ...bookingData, email: e.target.value })}
+                placeholder="correo@ejemplo.com"
+                className="w-full border border-[#d8c8b3] bg-white px-4 py-3 outline-none transition focus:border-[#4f7f66]"
+              />
+            </label>
+            <label className="block">
+              <span className="mb-2 flex items-center gap-2 text-sm font-bold text-[#28342d]">
+                <Sparkles className="h-4 w-4 text-[#4f7f66]" />
+                Servicio *
+              </span>
+              <select
+                required
+                value={bookingData.servicio}
+                onChange={(e) => setBookingData({ ...bookingData, servicio: e.target.value })}
+                className="w-full border border-[#d8c8b3] bg-white px-4 py-3 outline-none transition focus:border-[#4f7f66]"
               >
-                <Calendar className="w-5 h-5" />
-                <span>Confirmar Reserva</span>
-              </button>
-            </form>
-          )}
+                <option value="">Seleccione un servicio</option>
+                {services.flatMap((category) =>
+                  category.items.map((item) => (
+                    <option key={item.name} value={item.name}>
+                      {item.name} - {item.price}
+                    </option>
+                  )),
+                )}
+              </select>
+            </label>
+            <label className="block">
+              <span className="mb-2 flex items-center gap-2 text-sm font-bold text-[#28342d]">
+                <Calendar className="h-4 w-4 text-[#4f7f66]" />
+                Fecha *
+              </span>
+              <input
+                type="date"
+                required
+                value={bookingData.fecha}
+                onChange={(e) => setBookingData({ ...bookingData, fecha: e.target.value })}
+                className="w-full border border-[#d8c8b3] bg-white px-4 py-3 outline-none transition focus:border-[#4f7f66]"
+              />
+            </label>
+            <label className="block">
+              <span className="mb-2 flex items-center gap-2 text-sm font-bold text-[#28342d]">
+                <Clock className="h-4 w-4 text-[#4f7f66]" />
+                Hora *
+              </span>
+              <select
+                required
+                value={bookingData.hora}
+                onChange={(e) => setBookingData({ ...bookingData, hora: e.target.value })}
+                className="w-full border border-[#d8c8b3] bg-white px-4 py-3 outline-none transition focus:border-[#4f7f66]"
+              >
+                <option value="">Seleccione una hora</option>
+                {['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'].map((hour) => (
+                  <option key={hour} value={hour}>
+                    {hour}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="block md:col-span-2">
+              <span className="mb-2 block text-sm font-bold text-[#28342d]">Comentarios o peticiones especiales</span>
+              <textarea
+                rows={4}
+                value={bookingData.comentarios}
+                onChange={(e) => setBookingData({ ...bookingData, comentarios: e.target.value })}
+                placeholder="Preferencias, primera visita, embarazo, lesiones o alergias."
+                className="w-full resize-none border border-[#d8c8b3] bg-white px-4 py-3 outline-none transition focus:border-[#4f7f66]"
+              />
+            </label>
+            <button type="submit" className="inline-flex items-center justify-center gap-2 bg-[#4f7f66] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#28342d] md:col-span-2">
+              Confirmar reserva
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </form>
+        )}
+      </section>
+
+      <section className="border-y border-[#d8c8b3] bg-[#28342d] text-white">
+        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-14 text-center sm:px-6 md:grid-cols-3 lg:px-8">
+          {[
+            { title: 'Ubicación', body: 'Santa Ana, San José | Frente al Parque Central', icon: MapPin },
+            { title: 'Horario', body: 'Lunes a sábado 9:00 AM - 7:00 PM | Domingo 10:00 AM - 5:00 PM', icon: Clock },
+            { title: 'Contacto', body: '+506 2203-4000 | reservas@serenaritual.cr', icon: Phone },
+          ].map((item) => {
+            const Icon = item.icon
+            return (
+              <div key={item.title} className="border border-white/10 bg-white/5 p-6">
+                <Icon className="mx-auto h-7 w-7 text-[#f4d9bd]" />
+                <h4 className="mt-4 text-xl font-semibold">{item.title}</h4>
+                <p className="mt-2 text-sm leading-6 text-white/70">{item.body}</p>
+              </div>
+            )
+          })}
         </div>
       </section>
 
-      {/* Contact Info */}
-      <section className="py-16 bg-gradient-to-br from-teal-100 to-cyan-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="text-teal-900 font-semibold mb-2 text-lg">Ubicación</h4>
-              <p className="text-teal-700">
-                Santa Ana, San José<br />
-                Frente al Parque Central
-              </p>
-            </div>
-
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="text-teal-900 font-semibold mb-2 text-lg">Horario</h4>
-              <p className="text-teal-700">
-                Lunes - Sábado: 9:00 AM - 7:00 PM<br />
-                Domingo: 10:00 AM - 5:00 PM
-              </p>
-            </div>
-
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="text-teal-900 font-semibold mb-2 text-lg">Contacto</h4>
-              <p className="text-teal-700">
-                +506 2203-4000<br />
-                info@serenityspa.cr
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-teal-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center">
-                  <Leaf className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <div className="text-xl font-light">Serenity Spa</div>
-                  <div className="text-xs text-teal-300">Wellness & Beauty</div>
-                </div>
-              </div>
-              <p className="text-teal-300 text-sm mb-4 max-w-md">
-                Tu refugio de paz y bienestar. Descubre la armonía perfecta entre cuerpo, 
-                mente y espíritu en nuestro espacio dedicado a tu relajación.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4 text-teal-200">Servicios</h4>
-              <ul className="space-y-2 text-sm text-teal-300">
-                <li>Masajes</li>
-                <li>Faciales</li>
-                <li>Tratamientos Corporales</li>
-                <li>Paquetes Especiales</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4 text-teal-200">Síguenos</h4>
-              <div className="flex space-x-3">
-                <div className="w-10 h-10 bg-teal-800 rounded-full flex items-center justify-center hover:bg-teal-700 transition-colors cursor-pointer">
-                  <span className="text-lg">📷</span>
-                </div>
-                <div className="w-10 h-10 bg-teal-800 rounded-full flex items-center justify-center hover:bg-teal-700 transition-colors cursor-pointer">
-                  <span className="text-lg">f</span>
-                </div>
-                <div className="w-10 h-10 bg-teal-800 rounded-full flex items-center justify-center hover:bg-teal-700 transition-colors cursor-pointer">
-                  <span className="text-lg">▶</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-teal-800 mt-8 pt-8 text-center text-sm text-teal-400">
-            <p>© 2026 Serenity Spa & Wellness • Demo por Keter Software</p>
-          </div>
+      <footer className="bg-[#f7f1e8]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-[#627064] sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+          <p>© 2026 Serena Ritual Spa. Demo creado por Keter Software.</p>
+          <p>Masajes, faciales, rituales corporales y paquetes de bienestar.</p>
         </div>
       </footer>
     </div>
