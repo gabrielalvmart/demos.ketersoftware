@@ -110,7 +110,7 @@ export default function DentistaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f5fbff] text-[#092235]">
+    <div className="animate-page-in min-h-screen bg-[#f5fbff] text-[#092235]">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-[#d6edf8] bg-white/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
@@ -134,13 +134,13 @@ export default function DentistaPage() {
           <img
             src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=2200&h=1300&fit=crop"
             alt="Clínica dental moderna"
-            className="h-full w-full object-cover opacity-20"
+            className="animate-image-drift h-full w-full object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#f5fbff_0%,rgba(245,251,255,.96)_42%,rgba(245,251,255,.68)_100%)]" />
         </div>
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_460px] lg:px-8 lg:py-28">
-          <div className="min-w-0">
+          <div className="animate-fade-up min-w-0">
             <div className="mb-6 inline-flex items-center gap-2 border border-[#bde8f4] bg-white px-4 py-2 text-sm font-bold text-[#0f7490] shadow-sm">
               <Sparkles className="h-4 w-4" />
               Sonrisas naturales con tecnología digital
@@ -153,7 +153,7 @@ export default function DentistaPage() {
               agenda rápida, seguros aceptados y mensajes médicos sin fricción.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#cita" className="inline-flex items-center gap-2 bg-[#0f7490] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#092235]">
+              <a href="#cita" className="shine-cta inline-flex items-center gap-2 bg-[#0f7490] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#092235]">
                 Agendar cita
                 <Calendar className="h-4 w-4" />
               </a>
@@ -164,17 +164,34 @@ export default function DentistaPage() {
             </div>
           </div>
 
-          <div className="grid min-w-0 gap-4 sm:grid-cols-2">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon
-              return (
-                <div key={stat.label} className={`border border-[#d6edf8] bg-white p-5 shadow-sm ${index % 2 ? 'lg:translate-y-7' : ''}`}>
-                  <Icon className="h-7 w-7 text-[#0f7490]" />
-                  <div className="mt-5 text-3xl font-semibold text-[#092235]">{stat.value}</div>
-                  <div className="mt-1 text-sm leading-6 text-[#557082]">{stat.label}</div>
-                </div>
-              )
-            })}
+          <div className="animate-float-slow min-w-0 overflow-hidden border border-[#d6edf8] bg-white shadow-2xl shadow-[#0f7490]/10">
+            <div className="relative h-[420px] overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1200&h=1400&fit=crop"
+                alt="Especialista dental revisando una sonrisa en una clínica moderna"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#092235]/86 via-[#092235]/18 to-transparent" />
+              <div className="absolute bottom-0 p-6 text-white">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#67e8f9]">Diagnóstico digital</p>
+                <h3 className="mt-3 text-3xl font-semibold tracking-tight">Escaneo, plan y presupuesto antes de iniciar.</h3>
+                <p className="mt-3 text-sm leading-7 text-[#d7f3fb]">
+                  La experiencia visual comunica precisión clínica, tecnología y acompañamiento humano desde el primer contacto.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 border-t border-[#d6edf8] sm:grid-cols-4">
+              {stats.map((stat) => {
+                const Icon = stat.icon
+                return (
+                  <div key={stat.label} className="border-r border-[#d6edf8] p-4 last:border-r-0">
+                    <Icon className="h-5 w-5 text-[#0f7490]" />
+                    <div className="mt-3 text-2xl font-semibold text-[#092235]">{stat.value}</div>
+                    <div className="mt-1 text-xs leading-5 text-[#557082]">{stat.label}</div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -195,8 +212,8 @@ export default function DentistaPage() {
           </div>
 
           {submitted ? (
-            <div className="border border-[#b7ebc6] bg-[#f0fff4] p-8 text-center">
-              <CheckCircle className="mx-auto h-14 w-14 text-[#1f9d55]" />
+            <div className="animate-pop border border-[#b7ebc6] bg-[#f0fff4] p-8 text-center">
+              <CheckCircle className="icon-breathe mx-auto h-14 w-14 text-[#1f9d55]" />
               <h4 className="mt-4 text-2xl font-semibold text-[#092235]">Solicitud recibida</h4>
               <p className="mt-2 text-[#405d6f]">El equipo le contactara pronto para confirmar fecha, hora y especialista.</p>
             </div>
@@ -294,7 +311,7 @@ export default function DentistaPage() {
                   className="w-full resize-none border border-[#c8e3ef] bg-[#f8fcff] px-4 py-3 text-[#092235] outline-none transition focus:border-[#0f7490] focus:bg-white"
                 />
               </label>
-              <button type="submit" className="inline-flex items-center justify-center gap-2 bg-[#0f7490] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#092235] md:col-span-2">
+              <button type="submit" className="shine-cta inline-flex items-center justify-center gap-2 bg-[#0f7490] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#092235] md:col-span-2">
                 Solicitar cita
                 <ArrowRight className="h-4 w-4" />
               </button>
@@ -316,9 +333,9 @@ export default function DentistaPage() {
             </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="stagger-children grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <article key={service.name} className="group overflow-hidden border border-[#d6edf8] bg-[#f8fcff] shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-[#0f7490]/10">
+              <article key={service.name} className="interactive-card group overflow-hidden border border-[#d6edf8] bg-[#f8fcff] shadow-sm transition hover:shadow-xl hover:shadow-[#0f7490]/10">
                 <div className="relative h-56 overflow-hidden">
                   <img src={service.image} alt={service.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                   <span className="absolute right-3 top-3 bg-white px-3 py-1 text-xs font-bold text-[#0f7490] shadow-sm">{service.duration}</span>
@@ -350,7 +367,7 @@ export default function DentistaPage() {
             </p>
           </div>
           <div>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="stagger-children grid gap-3 sm:grid-cols-2">
               {insurances.map((insurance) => (
                 <div key={insurance} className="flex items-center gap-3 border border-white/10 bg-white/10 p-4">
                   <CheckCircle className="h-5 w-5 shrink-0 text-[#67e8f9]" />
@@ -366,7 +383,7 @@ export default function DentistaPage() {
               ].map((item) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.label} className="border border-white/10 bg-white p-5 text-[#092235]">
+                  <div key={item.label} className="interactive-card border border-white/10 bg-white p-5 text-[#092235]">
                     <Icon className="h-6 w-6 text-[#0f7490]" />
                     <h4 className="mt-4 font-bold">{item.label}</h4>
                     <p className="mt-1 text-sm text-[#557082]">{item.detail}</p>
@@ -379,7 +396,7 @@ export default function DentistaPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="stagger-children grid gap-5 md:grid-cols-3">
           {[
             { title: 'Teléfonos', icon: Phone, body: '+506 2234-5678', extra: 'Emergencias: +506 8765-4321' },
             { title: 'Email', icon: Mail, body: 'citas@clinicanerea.cr', extra: 'info@clinicanerea.cr' },
@@ -387,7 +404,7 @@ export default function DentistaPage() {
           ].map((item) => {
             const Icon = item.icon
             return (
-              <div key={item.title} className="border border-[#d6edf8] bg-white p-6 shadow-sm">
+              <div key={item.title} className="interactive-card border border-[#d6edf8] bg-white p-6 shadow-sm">
                 <Icon className="h-7 w-7 text-[#0f7490]" />
                 <h4 className="mt-5 text-2xl font-semibold">{item.title}</h4>
                 <p className="mt-3 font-bold text-[#092235]">{item.body}</p>

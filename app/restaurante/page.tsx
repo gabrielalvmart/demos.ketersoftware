@@ -94,6 +94,27 @@ const menuCategories = [
   },
 ]
 
+const diningExperiences = [
+  {
+    title: 'Cena degustación',
+    detail: 'Siete tiempos con maridaje opcional, ideal para aniversarios y celebraciones íntimas.',
+    price: 'Desde ₡48,000 p/p',
+    icon: Wine,
+  },
+  {
+    title: 'Eventos privados',
+    detail: 'Salón completo, menú cerrado y coordinación de vinos para equipos ejecutivos o familias.',
+    price: 'Hasta 36 invitados',
+    icon: Calendar,
+  },
+  {
+    title: 'Mesa del chef',
+    detail: 'Experiencia cercana a cocina con explicación de técnica, producto local y emplatado.',
+    price: 'Reserva especial',
+    icon: ChefHat,
+  },
+]
+
 export default function RestaurantePage() {
   const [selectedCategory, setSelectedCategory] = useState('Principales')
   const [reservationData, setReservationData] = useState({
@@ -116,7 +137,7 @@ export default function RestaurantePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#11100e] text-white">
+    <div className="animate-page-in min-h-screen bg-[#11100e] text-white">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-[#d6aa5b]/20 bg-[#11100e]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
@@ -139,13 +160,13 @@ export default function RestaurantePage() {
         <img
           src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=2400&h=1500&fit=crop"
           alt="Restaurante elegante con mesas preparadas"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="animate-image-drift absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,16,14,.96)_0%,rgba(17,16,14,.72)_48%,rgba(17,16,14,.28)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#11100e] to-transparent" />
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pb-20 pt-20 sm:px-6 lg:grid-cols-[1fr_420px] lg:px-8">
-          <div className="min-w-0">
+          <div className="animate-fade-up min-w-0">
             <div className="mb-6 inline-flex items-center gap-2 border border-[#d6aa5b]/30 bg-[#d6aa5b]/10 px-4 py-2 text-sm font-bold text-[#f8e4b0] backdrop-blur">
               <Award className="h-4 w-4" />
               Cocina de autor | Temporada 2026
@@ -158,7 +179,7 @@ export default function RestaurantePage() {
               demo vende atmósfera antes de mostrar el menú.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#reservar" className="inline-flex items-center gap-2 bg-[#d6aa5b] px-5 py-3 text-sm font-bold text-[#11100e] transition hover:bg-[#f8e4b0]">
+              <a href="#reservar" className="shine-cta inline-flex items-center gap-2 bg-[#d6aa5b] px-5 py-3 text-sm font-bold text-[#11100e] transition hover:bg-[#f8e4b0]">
                 Reservar mesa
                 <Calendar className="h-4 w-4" />
               </a>
@@ -169,7 +190,7 @@ export default function RestaurantePage() {
             </div>
           </div>
 
-          <div className="w-full max-w-[22rem] min-w-0 border border-[#d6aa5b]/25 bg-[#11100e]/70 p-6 backdrop-blur sm:max-w-none">
+          <div className="animate-fade-up-delay-1 w-full max-w-[22rem] min-w-0 border border-[#d6aa5b]/25 bg-[#11100e]/70 p-6 backdrop-blur sm:max-w-none">
             <Wine className="h-8 w-8 text-[#d6aa5b]" />
             <p className="mt-5 text-xs font-bold uppercase tracking-[0.26em] text-[#d6aa5b]">Menú degustación</p>
             <h3 className="mt-3 font-serif text-3xl font-semibold text-white">7 tiempos, maridaje opcional.</h3>
@@ -202,7 +223,7 @@ export default function RestaurantePage() {
               Bajo la dirección del chef Jean-Pierre Morales, el menú combina técnicas europeas, producto nacional y
               una presentacion sobria que se siente exclusiva sin perder calidez.
             </p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            <div className="stagger-children mt-8 grid gap-3 sm:grid-cols-3">
               {[
                 { value: '20+', label: 'años de oficio' },
                 { value: '95%', label: 'satisfacción' },
@@ -264,9 +285,9 @@ export default function RestaurantePage() {
             </div>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="stagger-children grid gap-5 md:grid-cols-3">
             {selectedMenu.items.map((item) => (
-              <article key={item.name} className="group overflow-hidden border border-white/10 bg-[#171411] transition hover:-translate-y-1 hover:border-[#d6aa5b]/60">
+              <article key={item.name} className="interactive-card group overflow-hidden border border-white/10 bg-[#171411] transition hover:border-[#d6aa5b]/60">
                 <div className="relative h-52 overflow-hidden">
                   <img src={item.image} alt={item.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                   <span className="absolute bottom-3 right-3 bg-[#d6aa5b] px-3 py-2 text-sm font-bold text-[#11100e]">{item.price}</span>
@@ -277,6 +298,40 @@ export default function RestaurantePage() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-[#171411]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.28em] text-[#d6aa5b]">Experiencias</p>
+            <h3 className="mt-3 font-serif text-5xl font-semibold tracking-tight text-white">No solo mesas: ocasiones diseñadas.</h3>
+            <p className="mt-5 text-base leading-8 text-[#d8c6a3]">
+              La página muestra cómo un restaurante puede vender reservas normales, noches especiales y eventos privados
+              sin mezclar todo en un solo formulario.
+            </p>
+            <a href="#reservar" className="shine-cta mt-8 inline-flex items-center gap-2 bg-[#d6aa5b] px-5 py-3 text-sm font-bold text-[#11100e] transition hover:bg-[#f8e4b0]">
+              Consultar disponibilidad
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+          <div className="stagger-children grid gap-4">
+            {diningExperiences.map((experience) => {
+              const Icon = experience.icon
+              return (
+                <article key={experience.title} className="interactive-card grid gap-4 border border-white/10 bg-[#11100e] p-5 sm:grid-cols-[56px_minmax(0,1fr)_auto] sm:items-center">
+                  <div className="flex h-14 w-14 items-center justify-center bg-[#8f2f2f] text-[#f8e4b0]">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-serif text-2xl font-semibold text-white">{experience.title}</h4>
+                    <p className="mt-2 text-sm leading-6 text-[#d8c6a3]">{experience.detail}</p>
+                  </div>
+                  <p className="font-semibold text-[#f8e4b0]">{experience.price}</p>
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -297,8 +352,8 @@ export default function RestaurantePage() {
           </div>
 
           {submitted ? (
-            <div className="border border-[#b7d7a8] bg-white p-10 text-center shadow-xl">
-              <CheckCircle className="mx-auto h-14 w-14 text-[#2f855a]" />
+            <div className="animate-pop border border-[#b7d7a8] bg-white p-10 text-center shadow-xl">
+              <CheckCircle className="icon-breathe mx-auto h-14 w-14 text-[#2f855a]" />
               <h4 className="mt-4 font-serif text-3xl font-semibold">Reservación recibida</h4>
               <p className="mt-2 text-[#6d5748]">El equipo confirmará los detalles por teléfono o correo.</p>
             </div>
@@ -388,7 +443,7 @@ export default function RestaurantePage() {
                   className="w-full resize-none border border-[#dac6a2] bg-[#fbf7ee] px-4 py-3 outline-none transition focus:border-[#8f2f2f] focus:bg-white"
                 />
               </label>
-              <button type="submit" className="inline-flex items-center justify-center gap-2 bg-[#8f2f2f] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#211814] md:col-span-2">
+              <button type="submit" className="shine-cta inline-flex items-center justify-center gap-2 bg-[#8f2f2f] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#211814] md:col-span-2">
                 Confirmar reservación
                 <ArrowRight className="h-4 w-4" />
               </button>
@@ -398,7 +453,7 @@ export default function RestaurantePage() {
       </section>
 
       <section className="border-y border-white/10 bg-[#171411]">
-        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-14 text-center sm:px-6 md:grid-cols-3 lg:px-8">
+        <div className="stagger-children mx-auto grid max-w-7xl gap-5 px-4 py-14 text-center sm:px-6 md:grid-cols-3 lg:px-8">
           {[
             { title: 'Dirección', body: 'Escazú Village, San José', icon: MapPin },
             { title: 'Horario', body: 'Martes a domingo | 6:00 PM - 11:00 PM', icon: Clock },
@@ -406,7 +461,7 @@ export default function RestaurantePage() {
           ].map((item) => {
             const Icon = item.icon
             return (
-              <div key={item.title} className="border border-white/10 bg-[#11100e] p-6">
+              <div key={item.title} className="interactive-card border border-white/10 bg-[#11100e] p-6">
                 <Icon className="mx-auto h-7 w-7 text-[#d6aa5b]" />
                 <h4 className="mt-4 font-serif text-2xl font-semibold text-white">{item.title}</h4>
                 <p className="mt-2 text-sm leading-6 text-[#d8c6a3]">{item.body}</p>

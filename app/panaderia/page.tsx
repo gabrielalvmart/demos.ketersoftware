@@ -137,11 +137,25 @@ const benefits = [
 
 export default function PanaderiaPage() {
   const [selectedCategory, setSelectedCategory] = useState(productLines[0].category)
+  const [orderSubmitted, setOrderSubmitted] = useState(false)
+  const [orderData, setOrderData] = useState({
+    nombre: '',
+    telefono: '',
+    tipo: 'Pan Artesanal',
+    fecha: '',
+    detalle: '',
+  })
   const currentCategory = productLines.find((line) => line.category === selectedCategory) || productLines[0]
   const CurrentIcon = currentCategory.icon
 
+  const handleOrderSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setOrderSubmitted(true)
+    setTimeout(() => setOrderSubmitted(false), 5000)
+  }
+
   return (
-    <div className="min-h-screen bg-[#fff7e8] text-[#2a170f]">
+    <div className="animate-page-in min-h-screen bg-[#fff7e8] text-[#2a170f]">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/20 bg-[#2a170f]/90 text-white backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
@@ -164,13 +178,13 @@ export default function PanaderiaPage() {
         <img
           src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=2200&h=1400&fit=crop"
           alt="Mesa con panes artesanales recien horneados"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="animate-image-drift absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(42,23,15,.94)_0%,rgba(42,23,15,.72)_45%,rgba(42,23,15,.18)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#fff7e8] to-transparent" />
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pb-20 pt-20 sm:px-6 lg:grid-cols-[1fr_420px] lg:px-8">
-          <div className="min-w-0">
+          <div className="animate-fade-up min-w-0">
             <div className="mb-6 inline-flex items-center gap-2 border border-[#f5c983]/30 bg-[#f5c983]/10 px-4 py-2 text-sm font-semibold text-[#ffe1a8] backdrop-blur">
               <Award className="h-4 w-4" />
               Horneado artesanal desde 1995
@@ -183,7 +197,7 @@ export default function PanaderiaPage() {
               especiales para hogares, eventos y negocios.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#productos" className="inline-flex items-center gap-2 bg-[#f5c983] px-5 py-3 text-sm font-bold text-[#2a170f] transition hover:bg-white">
+              <a href="#productos" className="shine-cta inline-flex items-center gap-2 bg-[#f5c983] px-5 py-3 text-sm font-bold text-[#2a170f] transition hover:bg-white">
                 Ver vitrina
                 <ShoppingCart className="h-4 w-4" />
               </a>
@@ -194,9 +208,9 @@ export default function PanaderiaPage() {
             </div>
           </div>
 
-          <div className="w-full max-w-[22rem] min-w-0 border border-white/20 bg-[#fff7e8]/90 p-5 shadow-2xl backdrop-blur sm:max-w-none">
+          <div className="animate-fade-up-delay-1 w-full max-w-[22rem] min-w-0 border border-white/20 bg-[#fff7e8]/90 p-5 shadow-2xl backdrop-blur sm:max-w-none">
             <p className="text-xs font-bold uppercase tracking-[0.26em] text-[#a05d2a]">Hoy en horno</p>
-            <div className="mt-5 space-y-4">
+            <div className="stagger-children mt-5 space-y-4">
               {productLines[0].items.map((item) => (
                 <div key={item.name} className="grid grid-cols-[74px_minmax(0,1fr)] gap-4 border-b border-[#ead2aa] pb-4 last:border-b-0 last:pb-0">
                   <img src={item.image} alt={item.name} className="h-[74px] w-[74px] object-cover" />
@@ -258,9 +272,9 @@ export default function PanaderiaPage() {
             </div>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="stagger-children grid gap-5 md:grid-cols-3">
             {currentCategory.items.map((item) => (
-              <article key={item.name} className="group border border-[#e4c99b] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <article key={item.name} className="interactive-card group border border-[#e4c99b] bg-white shadow-sm transition hover:shadow-xl">
                 <div className="h-52 overflow-hidden">
                   <img src={item.image} alt={item.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                 </div>
@@ -296,7 +310,7 @@ export default function PanaderiaPage() {
               La sección mayorista transforma la panadería en proveedor confiable para hoteles, cafeterías, restaurantes
               y empresas con pedidos recurrentes.
             </p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="stagger-children mt-8 grid gap-3 sm:grid-cols-2">
               {benefits.map((benefit) => (
                 <div key={benefit} className="flex gap-3 border border-white/10 bg-white/5 p-4">
                   <CheckCircle className="mt-1 h-5 w-5 shrink-0 text-[#f5c983]" />
@@ -304,7 +318,7 @@ export default function PanaderiaPage() {
                 </div>
               ))}
             </div>
-            <a href="#contacto" className="mt-8 inline-flex w-fit items-center gap-2 bg-[#f5c983] px-5 py-3 text-sm font-bold text-[#2a170f] transition hover:bg-white">
+            <a href="#contacto" className="shine-cta mt-8 inline-flex w-fit items-center gap-2 bg-[#f5c983] px-5 py-3 text-sm font-bold text-[#2a170f] transition hover:bg-white">
               Solicitar cotización
               <ArrowRight className="h-4 w-4" />
             </a>
@@ -318,7 +332,7 @@ export default function PanaderiaPage() {
           <h3 className="mt-3 font-serif text-5xl font-semibold tracking-tight">Pida, reserve o cotice.</h3>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="stagger-children grid gap-5 md:grid-cols-3">
           {[
             { title: 'Teléfono', icon: Phone, body: '+506 2234-1234', extra: 'WhatsApp: +506 8888-7777' },
             { title: 'Email', icon: Mail, body: 'pedidos@lepetrin.cr', extra: 'mayoreo@lepetrin.cr' },
@@ -326,7 +340,7 @@ export default function PanaderiaPage() {
           ].map((item) => {
             const Icon = item.icon
             return (
-              <div key={item.title} className="border border-[#e4c99b] bg-white p-6 shadow-sm">
+              <div key={item.title} className="interactive-card border border-[#e4c99b] bg-white p-6 shadow-sm">
                 <div className="flex h-12 w-12 items-center justify-center bg-[#2a170f] text-[#f5c983]">
                   <Icon className="h-6 w-6" />
                 </div>
@@ -358,11 +372,80 @@ export default function PanaderiaPage() {
             </div>
           </div>
           <div className="bg-[#fff7e8] p-6">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#b56228]">Pedidos especiales</p>
-            <p className="mt-3 text-base leading-8 text-[#6e4a34]">
-              Tortas personalizadas, mesas dulces y pedidos corporativos se agendan con 48 horas de anticipación. El
-              equipo confirma disponibilidad, sabores y entrega por teléfono.
-            </p>
+            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#b56228]">Pedido rápido</p>
+            {orderSubmitted ? (
+              <div className="animate-pop mt-5 border border-[#b7d7a8] bg-white p-6 text-center">
+                <CheckCircle className="icon-breathe mx-auto h-12 w-12 text-[#2f855a]" />
+                <h4 className="mt-4 font-serif text-2xl font-semibold text-[#2a170f]">Solicitud recibida</h4>
+                <p className="mt-2 text-sm leading-6 text-[#6e4a34]">El equipo confirmará disponibilidad, precio y hora de entrega por teléfono.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleOrderSubmit} className="mt-5 grid gap-4 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-sm font-bold text-[#2a170f]">Nombre *</span>
+                  <input
+                    required
+                    value={orderData.nombre}
+                    onChange={(e) => setOrderData({ ...orderData, nombre: e.target.value })}
+                    className="w-full border border-[#e4c99b] bg-white px-4 py-3 outline-none transition focus:border-[#b56228]"
+                    placeholder="Nombre del cliente"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-2 block text-sm font-bold text-[#2a170f]">Teléfono *</span>
+                  <input
+                    required
+                    type="tel"
+                    value={orderData.telefono}
+                    onChange={(e) => setOrderData({ ...orderData, telefono: e.target.value })}
+                    className="w-full border border-[#e4c99b] bg-white px-4 py-3 outline-none transition focus:border-[#b56228]"
+                    placeholder="+506 8888-7777"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-2 block text-sm font-bold text-[#2a170f]">Tipo de pedido *</span>
+                  <select
+                    required
+                    value={orderData.tipo}
+                    onChange={(e) => setOrderData({ ...orderData, tipo: e.target.value })}
+                    className="w-full border border-[#e4c99b] bg-white px-4 py-3 outline-none transition focus:border-[#b56228]"
+                  >
+                    {productLines.map((line) => (
+                      <option key={line.category} value={line.category}>
+                        {line.category}
+                      </option>
+                    ))}
+                    <option value="Mesa dulce">Mesa dulce</option>
+                    <option value="Pedido corporativo">Pedido corporativo</option>
+                  </select>
+                </label>
+                <label className="block">
+                  <span className="mb-2 block text-sm font-bold text-[#2a170f]">Fecha requerida *</span>
+                  <input
+                    required
+                    type="date"
+                    value={orderData.fecha}
+                    onChange={(e) => setOrderData({ ...orderData, fecha: e.target.value })}
+                    className="w-full border border-[#e4c99b] bg-white px-4 py-3 outline-none transition focus:border-[#b56228]"
+                  />
+                </label>
+                <label className="block sm:col-span-2">
+                  <span className="mb-2 block text-sm font-bold text-[#2a170f]">Detalle del pedido *</span>
+                  <textarea
+                    required
+                    rows={4}
+                    value={orderData.detalle}
+                    onChange={(e) => setOrderData({ ...orderData, detalle: e.target.value })}
+                    className="w-full resize-none border border-[#e4c99b] bg-white px-4 py-3 outline-none transition focus:border-[#b56228]"
+                    placeholder="Cantidad, sabores, ocasión, dirección o empaque especial."
+                  />
+                </label>
+                <button type="submit" className="shine-cta inline-flex items-center justify-center gap-2 bg-[#2a170f] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#b56228] sm:col-span-2">
+                  Cotizar pedido
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </form>
+            )}
             <div className="mt-5 flex gap-3">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center bg-[#2a170f] text-white transition hover:bg-[#b56228]">
                 <Instagram className="h-5 w-5" />

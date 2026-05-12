@@ -159,6 +159,27 @@ const testimonials = [
   },
 ]
 
+const wellnessPlans = [
+  {
+    title: 'Membresía Serena',
+    price: '₡58,000 / mes',
+    description: 'Un tratamiento mensual, prioridad de agenda y 10% en productos de cabina.',
+    icon: Leaf,
+  },
+  {
+    title: 'Tarjeta de regalo',
+    price: 'Desde ₡35,000',
+    description: 'Voucher digital para cumpleaños, agradecimientos corporativos o detalles de pareja.',
+    icon: Heart,
+  },
+  {
+    title: 'Ritual para dos',
+    price: '₡160,000',
+    description: 'Masaje en pareja, jacuzzi privado, aromaterapia y brindis saludable.',
+    icon: Sparkles,
+  },
+]
+
 export default function SpaPage() {
   const [selectedService, setSelectedService] = useState(services[0])
   const [bookingData, setBookingData] = useState({
@@ -180,7 +201,7 @@ export default function SpaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f7f1e8] text-[#28342d]">
+    <div className="animate-page-in min-h-screen bg-[#f7f1e8] text-[#28342d]">
       <header className="sticky top-0 z-50 border-b border-[#ded3c3] bg-[#fbf7ef]/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
@@ -203,12 +224,12 @@ export default function SpaPage() {
         <img
           src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=2400&h=1400&fit=crop"
           alt="Sala de spa con camillas, luz natural y ambiente sereno"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="animate-image-drift absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(247,241,232,.97)_0%,rgba(247,241,232,.82)_46%,rgba(247,241,232,.24)_100%)]" />
 
         <div className="relative mx-auto grid min-h-[calc(100vh-76px)] max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_420px] lg:px-8">
-          <div className="min-w-0">
+          <div className="animate-fade-up min-w-0">
             <div className="mb-6 inline-flex items-center gap-2 border border-[#d8c8b3] bg-[#fbf7ef]/80 px-4 py-2 text-sm font-bold text-[#4f7f66] backdrop-blur">
               <Sparkles className="h-4 w-4" />
               Rituales de descanso, belleza y recuperación
@@ -221,7 +242,7 @@ export default function SpaPage() {
               servicios claros y reservas fáciles sin perder elegancia.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#reservar" className="inline-flex items-center gap-2 bg-[#4f7f66] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#28342d]">
+              <a href="#reservar" className="shine-cta inline-flex items-center gap-2 bg-[#4f7f66] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#28342d]">
                 Reservar cita
                 <Calendar className="h-4 w-4" />
               </a>
@@ -232,7 +253,7 @@ export default function SpaPage() {
             </div>
           </div>
 
-          <div className="grid min-w-0 gap-4">
+          <div className="animate-fade-up-delay-1 grid min-w-0 gap-4">
             {[
               { title: 'Ambiente sensorial', text: 'Aromas, luz natural y salas silenciosas.', icon: Wind },
               { title: 'Productos botánicos', text: 'Líneas orgánicas, veganas y cruelty-free.', icon: Leaf },
@@ -240,7 +261,7 @@ export default function SpaPage() {
             ].map((item) => {
               const Icon = item.icon
               return (
-                <div key={item.title} className="border border-[#d8c8b3] bg-[#fbf7ef]/90 p-5 shadow-sm backdrop-blur">
+                <div key={item.title} className="interactive-card border border-[#d8c8b3] bg-[#fbf7ef]/90 p-5 shadow-sm backdrop-blur">
                   <Icon className="h-7 w-7 text-[#4f7f66]" />
                   <h3 className="mt-4 text-xl font-semibold text-[#28342d]">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-[#627064]">{item.text}</p>
@@ -294,9 +315,9 @@ export default function SpaPage() {
             </div>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="stagger-children grid gap-5 md:grid-cols-3">
             {selectedService.items.map((item) => (
-              <article key={item.name} className="group overflow-hidden border border-[#d8c8b3] bg-[#fbf7ef] shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <article key={item.name} className="interactive-card group overflow-hidden border border-[#d8c8b3] bg-[#fbf7ef] shadow-sm transition hover:shadow-xl">
                 <div className="relative h-52 overflow-hidden">
                   <img src={item.image} alt={item.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                   <div className="absolute right-3 top-3 inline-flex items-center gap-1 bg-[#28342d] px-3 py-1 text-xs font-bold text-white">
@@ -326,9 +347,9 @@ export default function SpaPage() {
             <p className="text-sm font-bold uppercase tracking-[0.28em] text-[#8b6b57]">Experiencias reales</p>
             <h3 className="mt-3 text-5xl font-light tracking-tight text-[#28342d]">Calma que se puede recomendar.</h3>
           </div>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="stagger-children grid gap-5 md:grid-cols-3">
             {testimonials.map((testimonial) => (
-              <article key={testimonial.name} className="border border-[#d8c8b3] bg-white p-6 shadow-sm">
+              <article key={testimonial.name} className="interactive-card border border-[#d8c8b3] bg-white p-6 shadow-sm">
                 <Quote className="h-8 w-8 text-[#c58f6a]" />
                 <div className="mt-4 flex">
                   {Array.from({ length: 5 }).map((_, index) => (
@@ -343,6 +364,38 @@ export default function SpaPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-5 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.28em] text-[#8b6b57]">Ingresos recurrentes</p>
+            <h3 className="mt-3 text-5xl font-light tracking-tight text-[#28342d]">Paquetes que convierten una visita en hábito.</h3>
+          </div>
+          <p className="text-base leading-8 text-[#627064]">
+            Un spa vende mejor cuando también ofrece membresías, regalos y experiencias para dos. Esta sección abre
+            caminos de compra claros antes del formulario de reserva.
+          </p>
+        </div>
+        <div className="stagger-children grid gap-5 md:grid-cols-3">
+          {wellnessPlans.map((plan) => {
+            const Icon = plan.icon
+            return (
+              <article key={plan.title} className="interactive-card border border-[#d8c8b3] bg-[#fbf7ef] p-6 shadow-sm transition hover:shadow-xl">
+                <div className="flex h-12 w-12 items-center justify-center bg-[#4f7f66] text-white">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h4 className="mt-6 text-2xl font-semibold text-[#28342d]">{plan.title}</h4>
+                <p className="mt-2 text-xl font-semibold text-[#8b6b57]">{plan.price}</p>
+                <p className="mt-4 min-h-[84px] text-sm leading-7 text-[#627064]">{plan.description}</p>
+                <a href="#reservar" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#4f7f66] transition hover:text-[#28342d]">
+                  Reservar o consultar
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </article>
+            )
+          })}
         </div>
       </section>
 
@@ -369,8 +422,8 @@ export default function SpaPage() {
         </div>
 
         {submitted ? (
-          <div className="border border-[#b9d2bf] bg-[#fbf7ef] p-10 text-center shadow-xl">
-            <CheckCircle className="mx-auto h-14 w-14 text-[#4f7f66]" />
+          <div className="animate-pop border border-[#b9d2bf] bg-[#fbf7ef] p-10 text-center shadow-xl">
+            <CheckCircle className="icon-breathe mx-auto h-14 w-14 text-[#4f7f66]" />
             <h4 className="mt-4 text-3xl font-light text-[#28342d]">Reserva recibida</h4>
             <p className="mt-2 text-[#627064]">El equipo confirmará disponibilidad y recomendaciones para su cita.</p>
           </div>
@@ -481,7 +534,7 @@ export default function SpaPage() {
                 className="w-full resize-none border border-[#d8c8b3] bg-white px-4 py-3 outline-none transition focus:border-[#4f7f66]"
               />
             </label>
-            <button type="submit" className="inline-flex items-center justify-center gap-2 bg-[#4f7f66] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#28342d] md:col-span-2">
+            <button type="submit" className="shine-cta inline-flex items-center justify-center gap-2 bg-[#4f7f66] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#28342d] md:col-span-2">
               Confirmar reserva
               <ArrowRight className="h-4 w-4" />
             </button>
@@ -490,7 +543,7 @@ export default function SpaPage() {
       </section>
 
       <section className="border-y border-[#d8c8b3] bg-[#28342d] text-white">
-        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-14 text-center sm:px-6 md:grid-cols-3 lg:px-8">
+        <div className="stagger-children mx-auto grid max-w-7xl gap-5 px-4 py-14 text-center sm:px-6 md:grid-cols-3 lg:px-8">
           {[
             { title: 'Ubicación', body: 'Santa Ana, San José | Frente al Parque Central', icon: MapPin },
             { title: 'Horario', body: 'Lunes a sábado 9:00 AM - 7:00 PM | Domingo 10:00 AM - 5:00 PM', icon: Clock },
@@ -498,7 +551,7 @@ export default function SpaPage() {
           ].map((item) => {
             const Icon = item.icon
             return (
-              <div key={item.title} className="border border-white/10 bg-white/5 p-6">
+              <div key={item.title} className="interactive-card border border-white/10 bg-white/5 p-6">
                 <Icon className="mx-auto h-7 w-7 text-[#f4d9bd]" />
                 <h4 className="mt-4 text-xl font-semibold">{item.title}</h4>
                 <p className="mt-2 text-sm leading-6 text-white/70">{item.body}</p>

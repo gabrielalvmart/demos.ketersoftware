@@ -35,6 +35,206 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .animate-page-in {
+    animation: page-in 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-fade-up-delay-1 {
+    animation: fade-up 760ms cubic-bezier(0.22, 1, 0.36, 1) 110ms both;
+  }
+
+  .animate-fade-up-delay-2 {
+    animation: fade-up 760ms cubic-bezier(0.22, 1, 0.36, 1) 220ms both;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 7s ease-in-out infinite;
+  }
+
+  .animate-image-drift {
+    animation: image-drift 18s ease-in-out infinite alternate;
+    transform-origin: center;
+  }
+
+  .animate-pop {
+    animation: pop-in 360ms cubic-bezier(0.22, 1.35, 0.36, 1) both;
+  }
+
+  .stagger-children > * {
+    animation: fade-up 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .stagger-children > *:nth-child(2) {
+    animation-delay: 70ms;
+  }
+
+  .stagger-children > *:nth-child(3) {
+    animation-delay: 140ms;
+  }
+
+  .stagger-children > *:nth-child(4) {
+    animation-delay: 210ms;
+  }
+
+  .stagger-children > *:nth-child(5) {
+    animation-delay: 280ms;
+  }
+
+  .stagger-children > *:nth-child(6) {
+    animation-delay: 350ms;
+  }
+
+  .interactive-card {
+    transform: translateZ(0);
+    transition:
+      transform 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease,
+      background-color 260ms ease;
+  }
+
+  .interactive-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .shine-cta {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .shine-cta::after {
+    content: '';
+    position: absolute;
+    inset: -60% auto -60% -35%;
+    z-index: -1;
+    width: 34%;
+    transform: skewX(-18deg);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.34), transparent);
+    opacity: 0;
+  }
+
+  .shine-cta:hover::after {
+    animation: shine-sweep 760ms ease;
+    opacity: 1;
+  }
+
+  .icon-breathe {
+    animation: icon-breathe 2.8s ease-in-out infinite;
+  }
+
+  .drawer-backdrop {
+    animation: backdrop-in 220ms ease both;
+  }
+
+  .drawer-panel {
+    animation: drawer-in 340ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes image-drift {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.08) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes shine-sweep {
+  from {
+    left: -35%;
+  }
+  to {
+    left: 115%;
+  }
+}
+
+@keyframes icon-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
 }
 
 /* Custom scrollbar */

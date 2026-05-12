@@ -86,7 +86,7 @@ const advantages = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#08080b] text-white">
+    <main className="animate-page-in min-h-screen bg-[#08080b] text-white">
       <Navbar />
 
       <section className="relative overflow-hidden pt-32">
@@ -94,14 +94,14 @@ export default function Home() {
           <img
             src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=2200&h=1300&fit=crop"
             alt="Estudio de diseno web profesional"
-            className="h-full w-full object-cover opacity-20"
+            className="animate-image-drift h-full w-full object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#08080b_0%,rgba(8,8,11,.86)_45%,rgba(8,8,11,.55)_100%)]" />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#08080b] to-transparent" />
         </div>
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-16 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:pb-24">
-          <div className="min-w-0 flex flex-col justify-center">
+          <div className="animate-fade-up min-w-0 flex flex-col justify-center">
             <div className="mb-6 inline-flex w-fit items-center gap-2 border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white/80 backdrop-blur">
               <Sparkles className="h-4 w-4 text-[#8bd3ff]" />
               Demos premium para vender servicios web
@@ -116,7 +116,7 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#demos"
-                className="inline-flex items-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-[#101014] transition hover:bg-[#dceeff]"
+                className="shine-cta inline-flex items-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-[#101014] transition hover:bg-[#dceeff]"
               >
                 Ver demos
                 <ArrowRight className="h-4 w-4" />
@@ -132,14 +132,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid content-end gap-4 sm:grid-cols-2">
+          <div className="animate-fade-up-delay-1 grid content-end gap-4 sm:grid-cols-2">
             {demos.slice(0, 4).map((demo, index) => {
               const Icon = demo.icon
               return (
                 <Link
                   href={`/${demo.slug}`}
                   key={demo.slug}
-                  className={`group relative min-h-[210px] overflow-hidden border border-white/10 bg-white/10 p-5 backdrop-blur transition hover:-translate-y-1 hover:border-white/40 ${
+                  className={`interactive-card group relative min-h-[210px] overflow-hidden border border-white/10 bg-white/10 p-5 backdrop-blur transition hover:border-white/40 ${
                     index % 2 ? 'lg:translate-y-8' : ''
                   }`}
                 >
@@ -177,14 +177,14 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="stagger-children grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {demos.map((demo) => {
             const Icon = demo.icon
             return (
               <Link
                 key={demo.slug}
                 href={`/${demo.slug}`}
-                className="group overflow-hidden border border-white/10 bg-[#111116] transition hover:-translate-y-1 hover:border-white/25 hover:bg-[#15151d]"
+                className="interactive-card group overflow-hidden border border-white/10 bg-[#111116] transition hover:border-white/25 hover:bg-[#15151d]"
               >
                 <div className="relative h-56 overflow-hidden">
                   <img
@@ -213,7 +213,7 @@ export default function Home() {
       </section>
 
       <section className="border-y border-white/10 bg-white/[0.03]">
-        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
+        <div className="stagger-children mx-auto grid max-w-7xl gap-5 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
           {advantages.map((item) => {
             const Icon = item.icon
             return (
